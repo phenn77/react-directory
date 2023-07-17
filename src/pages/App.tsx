@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Navbar} from "../components/ui";
+import {Home} from "../components/ui/Home";
 
 function App() {
     return (
@@ -24,20 +25,18 @@ function App() {
 
         <div className="container">
             <BrowserRouter>
-                <Navbar position={'top'} variant={'outlined'}/>
                 <Navbar position={'left'} variant={'outlined'}/>
-                <Navbar position={'bottom'} variant={'outlined'}/>
                 <Navbar position={'right'} variant={'outlined'}/>
                 <Routes>
                     <Route path="/"/>
 
-                    {/*<Route path="/artist" element={<Index title="ARTIST"/>}/>*/}
+                    <Route path="/artist" element={<Home title="ARTIST"/>}/>
                     {/*<Route path="/artist/view" element={<ArtistView/>}/>*/}
 
-                    {/*<Route path="/album" element={<Index title="ALBUM"/>}/>*/}
+                    <Route path="/album" element={<Home title="ALBUM"/>}/>
                     {/*<Route path="/album/view" element={<AlbumView/>}/>*/}
 
-                    {/*<Route path="/single" element={<Index title="SINGLE"/>}/>*/}
+                    <Route path="/single" element={<Home title="SINGLE"/>}/>
                 </Routes>
             </BrowserRouter>
         </div>
