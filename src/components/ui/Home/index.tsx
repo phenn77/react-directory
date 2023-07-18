@@ -16,9 +16,10 @@ interface IndexData {
 
 export const Home = (props: HomeProps) => {
     const [isLoading, setIsLoading] = useState(false);
+    const [page, setPage] = useState(1);
     const [data, setData] = useState<IndexData>({
             totalPage: 1,
-            page: 1,
+            page: page,
             data: []
         }
     );
@@ -26,14 +27,25 @@ export const Home = (props: HomeProps) => {
     useEffect(() => {
         document.title = props.title;
 
+        retrieveData();
+    }, []);
+
+    const retrieveData = () => {
+        console.log(page);
         setIsLoading(true);
 
-        fetchData({directory: 'artist', pageNumber: 1})
+        fetchData({directory: 'artist', pageNumber: page})
             .then((dt) => {
                 setData(dt);
                 setIsLoading(false);
             });
-    }, []);
+    }
+
+    const handleChangePage = (page: number) => {
+        setPage(page);
+
+        retrieveData();
+    }
 
     const content = isLoading ? (
         <>
@@ -42,7 +54,7 @@ export const Home = (props: HomeProps) => {
                 overflowY: 'scroll'
             }}>
             </Container>
-            <IndexPagination totalPage={data.totalPage}/>
+            <IndexPagination totalPage={data.totalPage} page={data.page}/>
         </>
     ) : (
         <Loading/>
@@ -59,7 +71,7 @@ export const Home = (props: HomeProps) => {
                 }}>
                 </Container>
                 {/*<IndexPagination totalPage={data.totalPage}/>*/}
-                <IndexPagination totalPage={20}/>
+                <IndexPagination totalPage={20} page={page} onChange={() => handleChangePage(page)}/>
             </>
             {/*{content}*/}
         </Box>

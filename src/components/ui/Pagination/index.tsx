@@ -2,7 +2,9 @@ import React from 'react';
 import {Box, Pagination} from "@mui/material";
 
 interface PaginationProps {
-    totalPage: number
+    totalPage: number,
+    page: number,
+    onChange?: (param: any) => void,
 }
 
 export const IndexPagination = (props: PaginationProps) => {
@@ -14,13 +16,15 @@ export const IndexPagination = (props: PaginationProps) => {
         }}>
             <Pagination
                 count={props.totalPage}
+                page={props.page}
                 shape='rounded'
                 size='large'
+                onChange={props.onChange}
                 sx={{
-                position: 'absolute',
-                bottom: 0,
-                mb: '40px'
-            }}/>
+                    position: 'absolute',
+                    bottom: 0,
+                    mb: '40px'
+                }}/>
         </Box>
     );
 }
