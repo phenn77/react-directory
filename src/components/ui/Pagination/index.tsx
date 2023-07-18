@@ -13,7 +13,7 @@ export const IndexPagination = (props: PaginationProps) => {
             justifyContent: 'center'
         }}>
             <Pagination
-                count={10}
+                count={props.totalPage}
                 shape='rounded'
                 size='large'
                 sx={{

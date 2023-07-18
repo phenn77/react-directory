@@ -25,7 +25,6 @@ function App() {
 
         <div className="container">
             <BrowserRouter>
-                <Navbar position={'left'} variant={'outlined'}/>
                 <Navbar position={'right'} variant={'outlined'}/>
                 <Routes>
                     <Route path="/"/>
