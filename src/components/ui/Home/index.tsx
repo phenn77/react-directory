@@ -15,11 +15,11 @@ interface IndexData {
 }
 
 export const Home = (props: HomeProps) => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [page, setPage] = useState(1);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [page, setPage] = useState<number>(1);
     const [data, setData] = useState<IndexData>({
             totalPage: 1,
-            page: page,
+            page: 1,
             data: []
         }
     );
@@ -28,21 +28,23 @@ export const Home = (props: HomeProps) => {
         document.title = props.title;
 
         retrieveData();
-    }, []);
+    }, [page]);
 
     const retrieveData = () => {
-        console.log(page);
         setIsLoading(true);
 
         fetchData({directory: 'artist', pageNumber: page})
-            .then((dt) => {
+            .then((dt: IndexData) => {
                 setData(dt);
-                setIsLoading(false);
             });
+
+        setIsLoading(false);
     }
 
     const handleChangePage = (page: number) => {
         setPage(page);
+
+        console.log("Page: " + page);
 
         retrieveData();
     }
@@ -54,7 +56,7 @@ export const Home = (props: HomeProps) => {
                 overflowY: 'scroll'
             }}>
             </Container>
-            <IndexPagination totalPage={data.totalPage} page={data.page}/>
+            <IndexPagination totalPage={data.totalPage} page={data.page} onChange={(event, value) => handleChangePage(value)}/>
         </>
     ) : (
         <Loading/>
@@ -64,16 +66,15 @@ export const Home = (props: HomeProps) => {
         <Box sx={{
             width: 1
         }}>
-            <>
-                <Container sx={{
-                    height: '85vh',
-                    overflowY: 'scroll'
-                }}>
-                </Container>
-                {/*<IndexPagination totalPage={data.totalPage}/>*/}
-                <IndexPagination totalPage={20} page={page} onChange={() => handleChangePage(page)}/>
-            </>
-            {/*{content}*/}
+            {/*<>*/}
+            {/*    <Container sx={{*/}
+            {/*        height: '85vh',*/}
+            {/*        overflowY: 'scroll'*/}
+            {/*    }}>*/}
+            {/*    </Container>*/}
+            {/*    <IndexPagination totalPage={data.totalPage} page={data.page} onChange={(event, value) => handleChangePage(value)}/>*/}
+            {/*</>*/}
+            {content}
         </Box>
     );
 }

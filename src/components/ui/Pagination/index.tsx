@@ -4,7 +4,7 @@ import {Box, Pagination} from "@mui/material";
 interface PaginationProps {
     totalPage: number,
     page: number,
-    onChange?: (param: any) => void,
+    onChange?: (event: any, value: any) => void,
 }
 
 export const IndexPagination = (props: PaginationProps) => {
