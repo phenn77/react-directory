@@ -1,11 +1,6 @@
 import React from 'react';
 import {Box, Pagination} from "@mui/material";
-
-interface PaginationProps {
-    totalPage: number,
-    page: number,
-    onChange?: (event: any, value: any) => void,
-}
+import {PaginationProps} from "../../../variables/interface";
 
 export const IndexPagination = (props: PaginationProps) => {
     return (

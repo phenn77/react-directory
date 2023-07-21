@@ -3,19 +3,16 @@ import {Box, Container} from "@mui/material";
 import {IndexPagination} from "../Pagination";
 import {fetchData} from "../../../services";
 import {Loading} from "../Loading";
+import {IndexData, IndexResponseProps} from "../../../variables/interface";
+import {useLocation} from "react-router-dom";
 
 interface HomeProps {
     title: string
 }
 
-interface IndexData {
-    totalPage: number,
-    page: number,
-    data: []
-}
-
 export const Home = (props: HomeProps) => {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const location = useLocation();
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [page, setPage] = useState<number>(1);
     const [data, setData] = useState<IndexData>({
             totalPage: 1,
@@ -26,54 +23,54 @@ export const Home = (props: HomeProps) => {
 
     useEffect(() => {
         document.title = props.title;
-
         retrieveData();
-    }, [page]);
+    }, [location, page]);
 
     const retrieveData = () => {
-        setIsLoading(true);
+        const timeout = setTimeout(() => {
+            if (isLoading) {
+                fetchData(
+                    {
+                        pageNumber: page,
+                        directory: 'artist'
+                    }
+                ).then((res: IndexResponseProps) => {
+                    setData(res);
+                });
+            }
 
-        fetchData({directory: 'artist', pageNumber: page})
-            .then((dt: IndexData) => {
-                setData(dt);
-            });
+            setIsLoading(false);
+        }, 3000);
 
-        setIsLoading(false);
+        return () => clearTimeout(timeout);
     }
 
     const handleChangePage = (page: number) => {
         setPage(page);
-
-        console.log("Page: " + page);
-
+        setIsLoading(true);
         retrieveData();
     }
 
     const content = isLoading ? (
+        <Loading/>
+    ) : (
         <>
             <Container sx={{
                 height: '85vh',
                 overflowY: 'scroll'
             }}>
             </Container>
-            <IndexPagination totalPage={data.totalPage} page={data.page} onChange={(event, value) => handleChangePage(value)}/>
+            <IndexPagination totalPage={data.totalPage}
+                             page={page}
+                             onChange={(event, value) => handleChangePage(value)}
+            />
         </>
-    ) : (
-        <Loading/>
     );
 
     return (
         <Box sx={{
             width: 1
         }}>
-            {/*<>*/}
-            {/*    <Container sx={{*/}
-            {/*        height: '85vh',*/}
-            {/*        overflowY: 'scroll'*/}
-            {/*    }}>*/}
-            {/*    </Container>*/}
-            {/*    <IndexPagination totalPage={data.totalPage} page={data.page} onChange={(event, value) => handleChangePage(value)}/>*/}
-            {/*</>*/}
             {content}
         </Box>
     );

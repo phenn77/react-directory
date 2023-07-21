@@ -1,10 +1,6 @@
 import axios from "axios";
+import {GetRequestProps} from "../variables/interface";
 
-interface RequestProps {
-    id: string,
-    directory: 'artist' | 'album' | 'single'
-}
-
-export const getData = (req: RequestProps) => {
+export const getData = (req: GetRequestProps) => {
 
 }
