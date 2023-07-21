@@ -27,3 +27,9 @@ export interface GetRequestProps {
     id: string,
     directory: Directory
 }
+
+export interface ImageGalleryProps {
+    id: string,
+    name: string,
+    filename: string
+}

@@ -3,15 +3,12 @@ import {Box, Container} from "@mui/material";
 import {IndexPagination} from "../Pagination";
 import {fetchData} from "../../../services";
 import {Loading} from "../Loading";
-import {IndexData, IndexResponseProps} from "../../../variables/interface";
+import {Directory, IndexData, IndexResponseProps} from "../../../variables/interface";
 import {useLocation} from "react-router-dom";
+import {ImageGallery} from "../ImageGallery";
 
-interface HomeProps {
-    title: string
-}
-
-export const Home = (props: HomeProps) => {
-    const location = useLocation();
+export const Home = () => {
+    const currentDirectory = useLocation().pathname.replace("/", "");
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [page, setPage] = useState<number>(1);
     const [data, setData] = useState<IndexData>({
@@ -22,9 +19,9 @@ export const Home = (props: HomeProps) => {
     );
 
     useEffect(() => {
-        document.title = props.title;
+        document.title = currentDirectory.toUpperCase();
         retrieveData();
-    }, [location, page]);
+    }, [currentDirectory, page]);
 
     const retrieveData = () => {
         const timeout = setTimeout(() => {
@@ -32,7 +29,7 @@ export const Home = (props: HomeProps) => {
                 fetchData(
                     {
                         pageNumber: page,
-                        directory: 'artist'
+                        directory: currentDirectory as Directory
                     }
                 ).then((res: IndexResponseProps) => {
                     setData(res);
@@ -59,6 +56,7 @@ export const Home = (props: HomeProps) => {
                 height: '85vh',
                 overflowY: 'scroll'
             }}>
+                <ImageGallery data={data.data}/>
             </Container>
             <IndexPagination totalPage={data.totalPage}
                              page={page}

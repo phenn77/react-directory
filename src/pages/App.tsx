@@ -29,13 +29,13 @@ function App() {
                 <Routes>
                     <Route path="/"/>
 
-                    <Route path="/artist" element={<Home title="ARTIST"/>}/>
+                    <Route path="/artist" element={<Home/>}/>
                     {/*<Route path="/artist/view" element={<ArtistView/>}/>*/}
 
-                    <Route path="/album" element={<Home title="ALBUM"/>}/>
+                    <Route path="/album" element={<Home/>}/>
                     {/*<Route path="/album/view" element={<AlbumView/>}/>*/}
 
-                    <Route path="/single" element={<Home title="SINGLE"/>}/>
+                    <Route path="/single" element={<Home/>}/>
                 </Routes>
             </BrowserRouter>
         </div>
