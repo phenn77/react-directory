@@ -8,7 +8,7 @@ import {useLocation} from "react-router-dom";
 import {ImageGallery} from "../ImageGallery";
 
 export const Home = () => {
-    const currentDirectory = useLocation().pathname.replace("/", "");
+    const currentDirectory: string = useLocation().pathname.replace("/", "");
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [page, setPage] = useState<number>(1);
     const [data, setData] = useState<IndexData>({

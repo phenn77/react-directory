@@ -7,9 +7,14 @@ export const ImageGallery = (data: any) => {
     const currentDirectory = useLocation().pathname.replace("/", "");
     const navigate = useNavigate();
 
-    const getInfo = (id: string) => {
+    const getInfo = (id: string, name: string, image: string) => {
         navigate(`/${currentDirectory}/view`, {
-            state: {id: id},
+            state: {
+                id: id,
+                name: name,
+                directory: currentDirectory,
+                imageUrl: image
+            },
         });
     };
 
@@ -66,7 +71,7 @@ export const ImageGallery = (data: any) => {
                             srcSet={`${data.filename}?fit=contain`}
                             alt={data.name}
                             loading="lazy"
-                            onClick={() => getInfo(data.id)}
+                            onClick={() => getInfo(data.id, data.name, data.filename)}
                             style={{
                                 borderRadius: '20px'
                             }}
