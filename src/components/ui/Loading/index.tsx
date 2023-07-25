@@ -28,7 +28,6 @@ function CircularProgressWithLabel(
                     {`${Math.round(props.value)}%`}
                 </Typography>
             </Box>
-
         </Box>
     );
 }

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {IndexRequestProps, IndexResponseProps} from "../variables/interface";
+import {IndexRequestProps, IndexResponseProps} from "../variables/interfaces";
 
 export const fetchData = async (req: IndexRequestProps): Promise<IndexResponseProps> => {
     try {

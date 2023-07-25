@@ -1,13 +1,17 @@
 import React, {useEffect, useState} from "react";
-import {Box, Container, Rating} from "@mui/material";
+import {Box, Container} from "@mui/material";
 import {useLocation} from "react-router-dom";
 import {getData} from "../../services/get";
-import {Directory} from "../../variables/interface";
-import {DisplayPicture, Loading} from "../../components/ui";
+import {Directory} from "../../variables/interfaces";
+import {DisplayPicture, Loading, Rate, SocialMedia} from "../../components/ui";
 
 export const View = () => {
     const {state} = useLocation();
-    const [data, setData] = useState<any>();
+    const [data, setData] = useState<any>({
+        name: '',
+        rating: 0,
+        socialMedia: []
+    });
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
@@ -33,31 +37,24 @@ export const View = () => {
         return () => clearTimeout(timeout);
     }
 
-    const content = isLoading ?
-        <Loading/> :
+    const content =
         (
-            <Box sx={{
-                display: 'flex',
-                flexDirection: 'column'
-            }}>
-                <Box sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    backgroundColor: 'red'
-                }}>
+            <Box
+                display={'flex'}
+                flexDirection={'column'}
+            >
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        backgroundColor: 'red'
+                    }}>
                     <DisplayPicture imageUrl={state.imageUrl} name={state.name}/>
                 </Box>
 
-                <Box sx={{
-                    display: 'flex',
-                    justifyContent: 'center'
-                }}>
-                    <Rating
-                        defaultValue={data && data.rating !== undefined ? data.rating : 0}
-                        precision={0.5}
-                        size='large'
-                        readOnly/>
-                </Box>
+                <SocialMedia data={data.socialMedia}/>
+
+                <Rate rate={data.rating}/>
 
                 <Box sx={{
                     display: 'grid',
@@ -76,7 +73,9 @@ export const View = () => {
 
     return (
         <Container>
-            {content}
+            {
+                isLoading ? <Loading/> : content
+            }
         </Container>
-    );
+    )
 }

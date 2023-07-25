@@ -1,7 +1,7 @@
 import React from 'react';
 import {Box, ButtonGroup, IconButton, Tooltip} from "@mui/material";
 import {Link} from 'react-router-dom';
-import {NavbarRoutes} from "../../../variables/ui/navbar";
+import {NavbarRoutes} from "../../../variables/icon";
 
 interface NavbarProps {
     position: 'top' | 'left' | 'bottom' | 'right',

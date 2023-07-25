@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, ImageList, ImageListItem, ImageListItemBar, styled} from "@mui/material";
-import {ImageGalleryProps} from "../../../variables/interface";
+import {ImageGalleryProps} from "../../../variables/interfaces";
 import {useLocation, useNavigate} from "react-router-dom";
 
 export const ImageGallery = (data: any) => {

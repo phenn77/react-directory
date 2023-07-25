@@ -3,7 +3,7 @@ import {Box, Container} from "@mui/material";
 import {IndexPagination} from "../Pagination";
 import {fetchData} from "../../../services";
 import {Loading} from "../Loading";
-import {Directory, IndexData, IndexResponseProps} from "../../../variables/interface";
+import {Directory, IndexData, IndexResponseProps} from "../../../variables/interfaces";
 import {useLocation} from "react-router-dom";
 import {ImageGallery} from "../ImageGallery";
 
