@@ -9,7 +9,7 @@ import {ImageGallery} from "../ImageGallery";
 
 export const Home = () => {
     const currentDirectory: string = useLocation().pathname.replace("/", "");
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [page, setPage] = useState<number>(1);
     const [data, setData] = useState<IndexData>({
             totalPage: 1,
@@ -21,22 +21,21 @@ export const Home = () => {
     useEffect(() => {
         document.title = currentDirectory.toUpperCase();
         retrieveData();
-    }, [currentDirectory, page]);
+    }, [page]);
 
     const retrieveData = () => {
-        const timeout = setTimeout(() => {
-            if (isLoading) {
-                fetchData(
-                    {
-                        pageNumber: page,
-                        directory: currentDirectory as Directory
-                    }
-                ).then((res: IndexResponseProps) => {
-                    setData(res);
-                });
-            }
+        setIsLoading(true);
 
-            setIsLoading(false);
+        const timeout = setTimeout(() => {
+            fetchData(
+                {
+                    pageNumber: page,
+                    directory: currentDirectory as Directory
+                }
+            ).then((res: IndexResponseProps) => {
+                setData(res);
+                setIsLoading(false);
+            });
         }, 3000);
 
         return () => clearTimeout(timeout);
@@ -44,8 +43,6 @@ export const Home = () => {
 
     const handleChangePage = (page: number) => {
         setPage(page);
-        setIsLoading(true);
-        retrieveData();
     }
 
     const content = isLoading ? (

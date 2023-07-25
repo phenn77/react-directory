@@ -1,35 +1,33 @@
 import React, {useEffect, useState} from "react";
-import {Box, Container} from "@mui/material";
+import {Box, Container, Rating} from "@mui/material";
 import {useLocation} from "react-router-dom";
 import {getData} from "../../services/get";
 import {Directory} from "../../variables/interface";
-import {Loading} from "../../components/ui";
+import {DisplayPicture, Loading} from "../../components/ui";
 
 export const View = () => {
     const {state} = useLocation();
     const [data, setData] = useState<any>();
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
         document.title = state.name;
-
         retrieveData();
     }, []);
 
     const retrieveData = () => {
-        const timeout = setTimeout(() => {
-            if (isLoading) {
-                getData(
-                    {
-                        id: state.id,
-                        directory: state.directory as Directory
-                    }
-                ).then((res: any) => {
-                    setData(res);
-                });
-            }
+        setIsLoading(true);
 
-            setIsLoading(false);
+        const timeout = setTimeout(() => {
+            getData(
+                {
+                    id: state.id,
+                    directory: state.directory as Directory
+                }
+            ).then((res: any) => {
+                setData(res);
+                setIsLoading(false);
+            });
         }, 3000);
 
         return () => clearTimeout(timeout);
@@ -38,20 +36,42 @@ export const View = () => {
     const content = isLoading ?
         <Loading/> :
         (
-            <Box>
-                <Box
-                    component="img"
-                    sx={{
-                        // height: 233,
-                        // width: 350,
-                        // maxHeight: {xs: 233, md: 167},
-                        // maxWidth: {xs: 350, md: 250},
-                    }}
-                    alt={state.name}
-                    src={`${state.imageUrl}?fit=contain`}
-                />
-            </Box>
+            <Box sx={{
+                display: 'flex',
+                flexDirection: 'column'
+            }}>
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    backgroundColor: 'red'
+                }}>
+                    <DisplayPicture imageUrl={state.imageUrl} name={state.name}/>
+                </Box>
 
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}>
+                    <Rating
+                        defaultValue={data && data.rating !== undefined ? data.rating : 0}
+                        precision={0.5}
+                        size='large'
+                        readOnly/>
+                </Box>
+
+                <Box sx={{
+                    display: 'grid',
+                    gap: 1,
+                    gridTemplateColumns: 'repeat(2, 1fr)',
+                    backgroundColor: 'yellow'
+                }}>
+                    <DisplayPicture imageUrl={state.imageUrl} name={state.name}/>
+                    <DisplayPicture imageUrl={state.imageUrl} name={state.name}/>
+                    <DisplayPicture imageUrl={state.imageUrl} name={state.name}/>
+                    <DisplayPicture imageUrl={state.imageUrl} name={state.name}/>
+
+                </Box>
+            </Box>
         );
 
     return (

@@ -23,7 +23,7 @@ export const Navbar = (props: NavbarProps) => {
                 orientation={xAligned ? 'horizontal' : 'vertical'}
                 variant={props.variant}
                 sx={{
-                    position: 'absolute',
+                    position: 'fixed',
                     ...(props.position === 'top' && {
                         top: 0
                     }),
