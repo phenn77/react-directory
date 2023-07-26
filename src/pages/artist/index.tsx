@@ -3,12 +3,13 @@ import {Box, Container} from "@mui/material";
 import {useLocation} from "react-router-dom";
 import {getData} from "../../services/get";
 import {Directory} from "../../variables/interfaces";
-import {DisplayPicture, Loading, Rate, SocialMedia} from "../../components/ui";
+import {DisplayPicture, Header, Loading, Rate, SocialMedia, Summary} from "../../components/ui";
 
 export const View = () => {
     const {state} = useLocation();
     const [data, setData] = useState<any>({
         name: '',
+        summary: '',
         rating: 0,
         socialMedia: []
     });
@@ -43,18 +44,15 @@ export const View = () => {
                 display={'flex'}
                 flexDirection={'column'}
             >
-                <Box
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        backgroundColor: 'red'
-                    }}>
-                    <DisplayPicture imageUrl={state.imageUrl} name={state.name}/>
-                </Box>
-
                 <SocialMedia data={data.socialMedia}/>
-
                 <Rate rate={data.rating}/>
+
+                {
+                    !!data.summary && (
+                        <Summary summary={data.summary}/>
+                    )
+                }
+
 
                 <Box sx={{
                     display: 'grid',
@@ -72,10 +70,19 @@ export const View = () => {
         );
 
     return (
-        <Container>
-            {
-                isLoading ? <Loading/> : content
-            }
-        </Container>
+        isLoading ? <Loading/> :
+            (
+                <Box>
+                    <Header
+                        imageThumbnail={state.imageUrl}
+                        imageBackground={"https://lh3.googleusercontent.com/DYIaU37AgOoki1s5dPLfw-dsd724OHpVXsP41_9kpNeKl-LWx6Za0Nf6QeTT7iRsLTYgSppzkzRLkw=w2880-h1200-p-l90-rj"}
+                        name={state.name}/>
+                    <Container>
+                        {content}
+                    </Container>
+                </Box>
+            )
+
+
     )
 }

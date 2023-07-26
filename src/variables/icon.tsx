@@ -40,22 +40,23 @@ export const SocialMediaIcons: Record<string, ReactElement> = {
     twitter: <Twitter
         color={'primary'}
         sx={{
-            fontSize: '30px'
+            fontSize: '50px'
         }}/>,
     instagram: <Instagram
         className={"instagram"}
         sx={{
-            fontSize: '30px',
-            borderRadius: '10px'
+            fontSize: '50px',
+            borderRadius: '15px',
+            color: '#f6f6f6'
         }}/>,
     website: <Language
         color={'info'}
         sx={{
-            fontSize: '30px'
+            fontSize: '50px'
         }}/>,
     facebook: <Facebook
         color={'primary'}
         sx={{
-            fontSize: '30px'
+            fontSize: '50px'
         }}/>
 }

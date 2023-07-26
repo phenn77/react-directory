@@ -39,7 +39,8 @@ export const Navbar = (props: NavbarProps) => {
                     ...((props.position === 'left' || props.position === 'right') && {
                         height: '100vh',
                         justifyContent: 'center'
-                    })
+                    }),
+                    zIndex: 1
                 }}
             >
                 {NavbarRoutes && (
