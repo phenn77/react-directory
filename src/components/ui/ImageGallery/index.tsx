@@ -2,6 +2,7 @@ import React from 'react';
 import {Container, ImageList, ImageListItem, ImageListItemBar, styled} from "@mui/material";
 import {ImageGalleryProps} from "../../../variables/interfaces";
 import {useLocation, useNavigate} from "react-router-dom";
+import {retrieveImageUrl} from "../../../utils";
 
 export const ImageGallery = (data: any) => {
     const currentDirectory = useLocation().pathname.replace("/", "");
@@ -22,19 +23,10 @@ export const ImageGallery = (data: any) => {
 
     if (data.data.length > 0) {
         data.data.forEach((x: any) => {
-            let imgUrl: string;
-
-            const defaultPicture: boolean | undefined = x.pictures[0].defaultPicture;
-            if (defaultPicture) {
-                imgUrl = process.env.REACT_APP_BE_URL + x.pictures[0].filename;
-            } else {
-                imgUrl = x.pictures.get(0).filename;
-            }
-
             images.push({
                 id: x._id,
                 name: x.name,
-                filename: imgUrl
+                filename: retrieveImageUrl(x.pictures[0])
             });
         });
     }

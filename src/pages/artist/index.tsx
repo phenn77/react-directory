@@ -3,7 +3,8 @@ import {Box, Container} from "@mui/material";
 import {useLocation} from "react-router-dom";
 import {getData} from "../../services/get";
 import {Directory} from "../../variables/interfaces";
-import {DisplayPicture, Header, Loading, Rate, SocialMedia, Summary} from "../../components/ui";
+import {DisplayPicture, Header, Loading, MediaList, Rate, SocialMedia, Summary} from "../../components/ui";
+import {MemberList} from "../../components/ui/MemberList";
 
 export const View = () => {
     const {state} = useLocation();
@@ -11,6 +12,9 @@ export const View = () => {
         name: '',
         summary: '',
         rating: 0,
+        members: [],
+        albums: [],
+        singles: [],
         socialMedia: []
     });
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -53,6 +57,7 @@ export const View = () => {
                     )
                 }
 
+                <MemberList data={data.members}/>
 
                 <Box sx={{
                     display: 'grid',
@@ -60,10 +65,11 @@ export const View = () => {
                     gridTemplateColumns: 'repeat(2, 1fr)',
                     backgroundColor: 'yellow'
                 }}>
-                    <DisplayPicture imageUrl={state.imageUrl} name={state.name}/>
-                    <DisplayPicture imageUrl={state.imageUrl} name={state.name}/>
-                    <DisplayPicture imageUrl={state.imageUrl} name={state.name}/>
-                    <DisplayPicture imageUrl={state.imageUrl} name={state.name}/>
+
+                    <MediaList data={data.members}/>
+                    <MediaList data={data.members}/>
+                    {/*<DisplayPicture imageUrl={state.imageUrl} name={state.name}/>*/}
+                    {/*<DisplayPicture imageUrl={state.imageUrl} name={state.name}/>*/}
 
                 </Box>
             </Box>
@@ -82,7 +88,5 @@ export const View = () => {
                     </Container>
                 </Box>
             )
-
-
     )
 }

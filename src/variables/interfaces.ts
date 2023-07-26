@@ -33,3 +33,8 @@ export interface ImageGalleryProps {
     name: string,
     filename: string
 }
+
+export interface ImageProps {
+    imageUrl: string,
+    name: string
+}

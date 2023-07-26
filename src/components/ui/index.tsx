@@ -6,6 +6,9 @@ import {Rate} from "./Rating";
 import {SocialMedia} from "./SocialMedia";
 import {Header} from "./Header";
 import {Summary} from "./Summary";
+import {MediaList} from "./MediaList";
+import {MediaImage} from "./MediaImage";
+import {MemberList} from "./MemberList";
 
 export {
     Navbar,
@@ -15,5 +18,8 @@ export {
     Rate,
     SocialMedia,
     Header,
-    Summary
+    Summary,
+    MediaList,
+    MediaImage,
+    MemberList
 }

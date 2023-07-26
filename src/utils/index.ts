@@ -6,7 +6,7 @@ export const imageOrientation = (url: string) => {
     const height: number = image.naturalHeight;
 
     let styling: any = {
-        borderRadius: '40px',
+        borderRadius: '160px',
         my: '40px',
     };
     if (width > height) {
@@ -24,4 +24,17 @@ export const imageOrientation = (url: string) => {
     }
 
     return styling;
+}
+
+export const retrieveImageUrl = (props: any) => {
+    let imgUrl: string;
+
+    const defaultPicture: boolean | undefined = props.defaultPicture;
+    if (defaultPicture) {
+        imgUrl = process.env.REACT_APP_BE_URL + props.filename;
+    } else {
+        imgUrl = props.pictures.get(0).filename;
+    }
+
+    return imgUrl;
 }

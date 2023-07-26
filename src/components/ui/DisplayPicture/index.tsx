@@ -1,13 +1,9 @@
 import {imageOrientation} from "../../../utils";
 import {Box} from "@mui/material";
 import React from "react";
+import {ImageProps} from "../../../variables/interfaces";
 
-interface DisplayProps {
-    imageUrl: string,
-    name: string
-}
-
-export const DisplayPicture = (props: DisplayProps) => {
+export const DisplayPicture = (props: ImageProps) => {
     return (
         <Box
             component="img"
