@@ -43,6 +43,14 @@
 }
 
 .member:hover {
-    opacity: 1;
     transform: scale(1.2);
+}
+
+.media-image {
+    opacity: 0.8;
+}
+
+.media-image:hover {
+    opacity: 1;
+    cursor: pointer;
 }

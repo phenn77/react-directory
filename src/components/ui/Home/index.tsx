@@ -21,7 +21,7 @@ export const Home = () => {
     useEffect(() => {
         document.title = currentDirectory.toUpperCase();
         retrieveData();
-    }, [page]);
+    }, [currentDirectory, page]);
 
     const retrieveData = () => {
         setIsLoading(true);

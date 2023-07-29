@@ -5,6 +5,7 @@ import {Box} from "@mui/material";
 export const MediaImage = (props: ImageProps) => {
     return (
         <Box component="img"
+             className={'media-image'}
              sx={{
                  width: '150px',
                  height: '150px',
