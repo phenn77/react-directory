@@ -29,7 +29,7 @@ export const Home = () => {
     /* BASED ON KEYWORD */
     useEffect(() => {
         setTimeout(() => {
-            const minKeywordSearch: number = Number(process.env.REACT_APP_MIN_KEYWORD_SEARCH) || 5;
+            const minKeywordSearch: number = Number(process.env.REACT_APP_MIN_KEYWORD_SEARCH);
             if (keyword.length > minKeywordSearch || keyword.length === 0) {
                 fetchData(
                     {
