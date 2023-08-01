@@ -9,6 +9,7 @@ import {Summary} from "./Summary";
 import {MediaList} from "./MediaList";
 import {MediaImage} from "./MediaImage";
 import {MemberList} from "./MemberList";
+import {ImageGallery} from "./ImageGallery";
 
 export {
     Navbar,
@@ -21,5 +22,6 @@ export {
     Summary,
     MediaList,
     MediaImage,
-    MemberList
+    MemberList,
+    ImageGallery
 }

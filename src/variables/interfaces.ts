@@ -14,6 +14,7 @@ export type Directory = 'artist' | 'album' | 'single';
 
 export interface IndexRequestProps {
     pageNumber: number,
+    keyword?: string,
     directory: Directory
 }
 
