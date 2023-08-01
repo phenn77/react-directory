@@ -25,18 +25,27 @@ export const Home = () => {
         retrieveData();
     }, [currentDirectory, page]);
 
+    /* BASED ON KEYWORD */
     useEffect(() => {
         setTimeout(() => {
             const minKeywordSearch: number = Number(process.env.REACT_APP_MIN_KEYWORD_SEARCH) || 5;
-            if (keyword.length > minKeywordSearch) {
-                retrieveData()
+            if (keyword.length > minKeywordSearch || keyword.length === 0) {
+                fetchData(
+                    {
+                        pageNumber: page,
+                        keyword: keyword,
+                        directory: currentDirectory as Directory
+                    }
+                ).then((res: IndexResponseProps) => {
+                    setData(res);
+                });
             }
         }, 500)
     }, [keyword]);
+    /* BASED ON KEYWORD */
 
     const retrieveData = () => {
         setIsLoading(true);
-
         const timeout = setTimeout(() => {
             fetchData(
                 {
@@ -71,6 +80,7 @@ export const Home = () => {
             />
 
             <Container sx={{
+                paddingTop: '35px',
                 height: '85vh',
                 overflowY: 'scroll'
             }}>

@@ -1,5 +1,5 @@
 import React from "react";
-import {InputAdornment, TextField} from "@mui/material";
+import {Box, InputAdornment, TextField} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 
 interface SearchProps {
@@ -9,25 +9,50 @@ interface SearchProps {
 
 export const SearchBar = (props: SearchProps) => {
     return (
-        <TextField
-            sx={{
-                position: 'absolute',
-                mt: '20px',
-                background: 'whitesmoke',
-                borderRadius: '20px'
-            }}
-            variant={'standard'}
-            onChange={props.onChange}
-            value={props.searchText}
-            autoComplete={'off'}
-            InputProps={{
-                disableUnderline: true,
-                endAdornment: (
-                    <InputAdornment position={'start'}>
-                        <SearchIcon/>
-                    </InputAdornment>
-                )
-            }}
-        />
+        <Box sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            position: 'absolute',
+            mt: '20px',
+            background: 'whitesmoke',
+            borderTopRightRadius: '20px',
+            borderBottomRightRadius: '20px',
+            left: 0
+        }}>
+            <Box
+                className={'searchIcon'}
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    color: 'rgba(0, 0, 0, 0.54)'
+                }}>
+                <SearchIcon sx={{
+                    fontSize: '30px'
+                }}/>
+            </Box>
+            <Box
+                className={'searchText'}
+                sx={{
+                    display: 'none'
+                }}>
+                <TextField
+                    variant={'standard'}
+                    onChange={props.onChange}
+                    value={props.searchText}
+                    autoComplete={'off'}
+                    InputProps={{
+                        style: {
+                            paddingLeft: '20px'
+                        },
+                        disableUnderline: true,
+                        endAdornment: (
+                            <InputAdornment position={'start'}>
+                                <SearchIcon/>
+                            </InputAdornment>
+                        )
+                    }}
+                />
+            </Box>
+        </Box>
     )
 }
