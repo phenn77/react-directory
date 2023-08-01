@@ -11,6 +11,7 @@ import {ImageGallery} from "../ImageGallery";
 export const Home = () => {
     const currentDirectory: string = useLocation().pathname.replace("/", "");
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isClickedSearch, setIsClickedSearch] = useState<boolean>(false);
     const [page, setPage] = useState<number>(1);
     const [keyword, setKeyword] = useState<string>('');
     const [data, setData] = useState<IndexData>({
@@ -40,7 +41,7 @@ export const Home = () => {
                     setData(res);
                 });
             }
-        }, 500)
+        }, 2000)
     }, [keyword]);
     /* BASED ON KEYWORD */
 
@@ -62,25 +63,20 @@ export const Home = () => {
         return () => clearTimeout(timeout);
     }
 
-    const handleChangePage = (page: number) => {
-        setPage(page);
-    }
-
-    const handleChangeKeyword = (keyword: string) => {
-        setKeyword(keyword);
-    }
-
     const content = isLoading ? (
         <Loading/>
     ) : (
         <>
             <SearchBar
                 searchText={keyword}
-                onChange={(event) => handleChangeKeyword(event.target.value)}
+                onChange={(event) => setKeyword(event.target.value)}
+                showTextField={() => setIsClickedSearch(true)}
+                closeTextField={() => [setIsClickedSearch(false), setKeyword('')]}
+                isClicked={isClickedSearch}
             />
 
             <Container sx={{
-                paddingTop: '35px',
+                paddingTop: '30px',
                 height: '85vh',
                 overflowY: 'scroll'
             }}>
@@ -89,7 +85,7 @@ export const Home = () => {
 
             <IndexPagination totalPage={data.totalPage}
                              page={page}
-                             onChange={(event, value) => handleChangePage(value)}
+                             onChange={(event, value) => setPage(value)}
             />
         </>
     );

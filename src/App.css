@@ -54,11 +54,3 @@
     opacity: 1;
     cursor: pointer;
 }
-
-.searchIcon:hover {
-    display: none
-}
-
-.searchIcon:hover + .searchText {
-    display: block
-}

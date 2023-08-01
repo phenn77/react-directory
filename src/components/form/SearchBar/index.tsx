@@ -1,58 +1,86 @@
 import React from "react";
-import {Box, InputAdornment, TextField} from "@mui/material";
+import {Box, Button, InputAdornment, TextField} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
+import CloseIcon from '@mui/icons-material/Close';
 
 interface SearchProps {
     searchText: string,
-    onChange: (event: any) => void
+    onChange: (event: any) => void,
+    showTextField: (event: any) => void,
+    closeTextField: (event: any) => void,
+    isClicked: boolean
 }
 
 export const SearchBar = (props: SearchProps) => {
     return (
         <Box sx={{
             display: 'flex',
-            flexDirection: 'row',
+            justifyContent: 'center',
             position: 'absolute',
-            mt: '20px',
-            background: 'whitesmoke',
-            borderTopRightRadius: '20px',
-            borderBottomRightRadius: '20px',
-            left: 0
+            top: 0,
+            left: 0,
+            right: 0
         }}>
-            <Box
-                className={'searchIcon'}
-                sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    color: 'rgba(0, 0, 0, 0.54)'
-                }}>
-                <SearchIcon sx={{
-                    fontSize: '30px'
-                }}/>
-            </Box>
-            <Box
-                className={'searchText'}
-                sx={{
-                    display: 'none'
-                }}>
-                <TextField
-                    variant={'standard'}
-                    onChange={props.onChange}
-                    value={props.searchText}
-                    autoComplete={'off'}
-                    InputProps={{
-                        style: {
-                            paddingLeft: '20px'
-                        },
-                        disableUnderline: true,
-                        endAdornment: (
-                            <InputAdornment position={'start'}>
-                                <SearchIcon/>
-                            </InputAdornment>
-                        )
-                    }}
-                />
-            </Box>
+            {!props.isClicked ?
+                (
+                    <Button
+                        variant={'text'}
+                        onClick={props.showTextField}
+                        sx={{
+                            background: 'whitesmoke',
+                            color: 'rgba(0, 0, 0, 0.54)',
+                            borderBottomLeftRadius: '20px',
+                            borderBottomRightRadius: '20px'
+                        }}
+                    >
+                        <SearchIcon sx={{
+                            fontSize: '30px'
+                        }}/>
+                    </Button>
+                ) : (
+                    <TextField
+                        variant={'standard'}
+                        placeholder={'Search...'}
+                        onChange={props.onChange}
+                        value={props.searchText}
+                        autoComplete={'off'}
+                        autoFocus={true}
+                        sx={{
+                            padding: '6px 8px',
+                            background: 'whitesmoke',
+                            borderBottomLeftRadius: '20px',
+                            borderBottomRightRadius: '20px'
+                        }}
+                        InputProps={{
+                            style: {
+                                paddingLeft: '20px'
+                            },
+                            inputProps: {
+                                maxLength: 20
+                            },
+                            disableUnderline: true,
+                            endAdornment: (
+                                <InputAdornment position={'start'}>
+                                    <Button
+                                        variant={'text'}
+                                        onClick={props.closeTextField}
+                                        sx={{
+                                            background: 'whitesmoke',
+                                            color: 'rgba(0, 0, 0, 0.54)',
+                                            padding: 0,
+                                            minWidth: 0
+                                        }}
+                                    >
+                                        <CloseIcon sx={{
+                                            fontSize: '30px'
+                                        }}/>
+                                    </Button>
+                                </InputAdornment>
+                            )
+                        }}
+                    />
+                )
+            }
         </Box>
     )
 }
