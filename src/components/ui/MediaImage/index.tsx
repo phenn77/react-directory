@@ -3,16 +3,27 @@ import {ImageProps} from "../../../variables/interfaces";
 import {Box} from "@mui/material";
 
 export const MediaImage = (props: ImageProps) => {
+    const isMemberDirectory: string = props.directory === 'member' ? 'member' : '';
+
     return (
-        <Box component="img"
-             className={'media-image'}
+        <Box
+            key={props.name}
+            component="img"
+             className={`media-image ${isMemberDirectory}`}
              sx={{
                  width: '150px',
                  height: '150px',
-                 borderRadius: '20px'
+                 ...(props.directory === 'member') && {
+                     borderRadius: '75px',
+                     m: '20px'
+                 },
+                 ...(props.directory !== 'member') && {
+                     borderRadius: '20px'
+                 }
              }}
              alt={props.name}
              src={`${props.imageUrl}?fit=contain`}
+             onClick={props.onClick}
         />
     )
 }

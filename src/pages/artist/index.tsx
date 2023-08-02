@@ -56,20 +56,18 @@ export const View = () => {
                     )
                 }
 
-                <MemberList data={data.members}/>
+                <MediaList directory={'member'} data={data.members} paginationPosition={'bottom'}/>
+
+                {/*<MemberList data={data.members}/>*/}
 
                 <Box sx={{
-                    display: 'grid',
+                    display: 'flex',
+                    justifyContent: 'space-evenly',
                     gap: 1,
-                    gridTemplateColumns: 'repeat(2, 1fr)',
-                    backgroundColor: 'yellow'
+                    // backgroundColor: 'yellow'
                 }}>
-
-                    <MediaList data={data.members}/>
-                    <MediaList data={data.members}/>
-                    {/*<DisplayPicture imageUrl={state.imageUrl} name={state.name}/>*/}
-                    {/*<DisplayPicture imageUrl={state.imageUrl} name={state.name}/>*/}
-
+                    <MediaList directory={'album'} data={data.members} paginationPosition={'right'}/>
+                    <MediaList directory={'single'} data={data.members} paginationPosition={'left'}/>
                 </Box>
             </Box>
         );
