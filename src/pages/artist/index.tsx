@@ -3,7 +3,7 @@ import {Box, Container} from "@mui/material";
 import {useLocation} from "react-router-dom";
 import {getData} from "../../services/get";
 import {Directory} from "../../variables/interfaces";
-import {Header, Loading, MediaList, MemberList, Rate, SocialMedia, Summary} from "../../components/ui";
+import {Header, Loading, MediaList, Rate, SocialMedia, Summary} from "../../components/ui";
 
 export const View = () => {
     const {state} = useLocation();

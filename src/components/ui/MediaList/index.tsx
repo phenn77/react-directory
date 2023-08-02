@@ -1,10 +1,11 @@
 import React, {useState} from "react";
-import {Box, ImageList, ImageListItem} from "@mui/material";
+import {Box, ImageList, ImageListItem, useMediaQuery} from "@mui/material";
 import {MediaImage} from "../MediaImage";
 import {retrieveImageUrl} from "../../../utils";
 import {DotPagination} from "../DotPagination";
 import SwipeableViews from "react-swipeable-views";
 import {useNavigate} from "react-router-dom";
+import withWidth from "@mui/material/Hidden/withWidth";
 
 //https://github.com/oliviertassinari/react-swipeable-views
 
@@ -21,6 +22,9 @@ interface MediaListProps {
 }
 
 export const MediaList = (props: MediaListProps) => {
+    const width = withWidth();
+    console.log(width);
+
     const navigate = useNavigate();
 
     let mediaLimit = props.directory === 'member' ?
@@ -60,6 +64,7 @@ export const MediaList = (props: MediaListProps) => {
 
         const image = (
             <MediaImage
+                key={mediaData.name}
                 imageUrl={retrieveImageUrl(mediaData.pictures[0])}
                 name={mediaData.name}
                 directory={props.directory}
@@ -87,6 +92,7 @@ export const MediaList = (props: MediaListProps) => {
     for (let i: number = 0; i < totalSteps; i++) {
         imageData.push(
             <Box
+                key={`image-${i}`}
                 sx={{
                     ...(props.directory !== 'member') && {
                         display: 'flex',
