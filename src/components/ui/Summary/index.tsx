@@ -1,5 +1,5 @@
 import React from "react";
-import {Box} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 
 interface SummaryProps {
     summary: string
@@ -11,20 +11,23 @@ export const Summary = (props: SummaryProps) => {
             component={'fieldset'}
             sx={{
                 overflowY: 'scroll',
-                height: '200px',
-                p: '20px',
+                maxHeight: '300px',
+                p: '30px 50px',
                 textAlign: 'justify',
-                my: '20px',
+                m: '30px',
                 borderRadius: '20px'
             }}>
             <legend style={{
                 textAlign: 'center',
                 fontWeight: 'bold'
             }}>
-                SUMMARY
+                <Typography variant={'h6'}>
+                    SUMMARY
+                </Typography>
             </legend>
-
-            {props.summary}
+            <Typography>
+                {props.summary}
+            </Typography>
         </Box>
     )
 }

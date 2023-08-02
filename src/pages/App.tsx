@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Navbar} from "../components/ui";
 import {Home} from "../components/ui/Home";
 import {View as ArtistView} from "../pages/artist";
+import {View as AlbumView} from "../pages/album";
 
 function App() {
     return (
@@ -34,7 +35,7 @@ function App() {
                     <Route path="/artist/view" element={<ArtistView/>}/>
 
                     <Route path="/album" element={<Home/>}/>
-                    {/*<Route path="/album/view" element={<AlbumView/>}/>*/}
+                    <Route path="/album/view" element={<AlbumView/>}/>
 
                     <Route path="/single" element={<Home/>}/>
                 </Routes>

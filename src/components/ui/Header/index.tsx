@@ -29,7 +29,7 @@ export const Header = (props: HeaderProps) => {
             justifyContent: 'center',
             position: 'relative'
         }}>
-            <DisplayPicture imageUrl={props.imageThumbnail} name={props.name}/>
+            <DisplayPicture imageUrl={props.imageThumbnail} name={props.name} directory={'artist'}/>
         </BoxWithStyle>
     )
 }

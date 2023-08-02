@@ -38,6 +38,6 @@ export interface ImageGalleryProps {
 export interface ImageProps {
     imageUrl: string,
     name: string,
-    directory?: 'album' | 'single' | 'member',
+    directory?: 'artist' | 'album' | 'single' | 'member',
     onClick?: (event: any) => void
 }

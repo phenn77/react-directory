@@ -11,6 +11,6 @@ export const getData = async (req: GetRequestProps) => {
     } catch (e) {
         console.log(e);
 
-        return {};
+        throw e;
     }
 }

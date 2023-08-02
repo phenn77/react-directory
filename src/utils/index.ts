@@ -5,10 +5,11 @@ export const imageOrientation = (url: string) => {
     const width: number = image.naturalWidth;
     const height: number = image.naturalHeight;
 
+
     let styling: any = {
-        borderRadius: '160px',
         my: '40px',
     };
+
     if (width > height) {
         //LANDSCAPE
         styling.width = '320px';

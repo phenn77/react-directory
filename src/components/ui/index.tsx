@@ -8,8 +8,8 @@ import {Header} from "./Header";
 import {Summary} from "./Summary";
 import {MediaList} from "./MediaList";
 import {MediaImage} from "./MediaImage";
-import {MemberList} from "./MemberList";
 import {ImageGallery} from "./ImageGallery";
+import {Tracklist} from "./Tracklist";
 
 export {
     Navbar,
@@ -22,6 +22,6 @@ export {
     Summary,
     MediaList,
     MediaImage,
-    MemberList,
-    ImageGallery
+    ImageGallery,
+    Tracklist,
 }

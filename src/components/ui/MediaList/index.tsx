@@ -22,8 +22,8 @@ interface MediaListProps {
 }
 
 export const MediaList = (props: MediaListProps) => {
-    const width = withWidth();
-    console.log(width);
+    // const width = withWidth();
+    // console.log(width);
 
     const navigate = useNavigate();
 
