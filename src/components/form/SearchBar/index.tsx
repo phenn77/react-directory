@@ -16,10 +16,11 @@ export const SearchBar = (props: SearchProps) => {
         <Box sx={{
             display: 'flex',
             justifyContent: 'center',
-            position: 'absolute',
+            // position: 'absolute',
             top: 0,
             left: 0,
             right: 0,
+            mb: '5px'
             // transition: 'transform 2s'
         }}>
             <Fade in={props.isClicked}>

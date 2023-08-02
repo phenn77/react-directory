@@ -7,7 +7,9 @@ interface PaginationProps {
     totalSteps: number,
     activeStep: number,
     handleBack: (event: any) => void,
-    handleNext: (event: any) => void
+    handleNext: (event: any) => void,
+    activeColor?: string,
+    idleColor?: string
 }
 
 export const DotPagination = (props: PaginationProps) => {
@@ -18,10 +20,21 @@ export const DotPagination = (props: PaginationProps) => {
             }
         },
         '& .MuiMobileStepper-dot': {
+            backgroundColor: props.idleColor,
             ...(props.position === 'left' || props.position === 'right') && {
                 margin: '2px 0'
             }
+        },
+        '& .MuiMobileStepper-dotActive': {
+            backgroundColor: props.activeColor
         }
+    }));
+
+    const ButtonWithStyle = styled(Button)(({theme}) => ({
+        backgroundColor: props.activeColor,
+        '&.Mui-disabled': {
+            backgroundColor: props.idleColor
+        },
     }));
 
     return (
@@ -36,11 +49,11 @@ export const DotPagination = (props: PaginationProps) => {
                 position="static"
                 activeStep={props.activeStep}
                 backButton={
-                    <Button size="small"
+                    <ButtonWithStyle size="small"
                             onClick={props.handleBack}
                             disabled={props.activeStep === 0}
                             sx={{
-                                minWidth: 0
+                                minWidth: 0,
                             }}
                     >
                         {
@@ -50,10 +63,10 @@ export const DotPagination = (props: PaginationProps) => {
                                 <KeyboardArrowLeft/>
                             )
                         }
-                    </Button>
+                    </ButtonWithStyle>
                 }
                 nextButton={
-                    <Button size="small"
+                    <ButtonWithStyle size="small"
                             onClick={props.handleNext}
                             disabled={props.activeStep === props.totalSteps - 1}
                             sx={{
@@ -67,7 +80,7 @@ export const DotPagination = (props: PaginationProps) => {
                                 <KeyboardArrowRight/>
                             )
                         }
-                    </Button>
+                    </ButtonWithStyle>
                 }
                 sx={{
                     p: 0,

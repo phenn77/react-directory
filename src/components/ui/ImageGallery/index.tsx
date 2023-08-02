@@ -51,9 +51,7 @@ export const ImageGallery = (data: any) => {
         <Container>
             <ImageList
                 cols={4}
-                sx={{
-                    pt: '20px'
-                }}>
+            >
                 {images.map((data: ImageGalleryProps) => (
                     <ImageListItemWithStyle key={data.id} sx={{
                         padding: '10px'

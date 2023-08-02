@@ -75,18 +75,22 @@ export const Home = () => {
                 isClicked={isClickedSearch}
             />
 
-            <Container sx={{
-                paddingTop: '30px',
-                height: '85vh',
-                overflowY: 'scroll'
+            <Box sx={{
+                display: 'flex',
+                flexDirection: 'column'
             }}>
-                <ImageGallery data={data.data}/>
-            </Container>
+                <Container sx={{
+                    height: '80vh',
+                    overflowY: 'scroll'
+                }}>
+                    <ImageGallery data={data.data}/>
+                </Container>
 
-            <IndexPagination totalPage={data.totalPage}
-                             page={page}
-                             onChange={(event, value) => setPage(value)}
-            />
+                <IndexPagination totalPage={data.totalPage}
+                                 page={page}
+                                 onChange={(event, value) => setPage(value)}
+                />
+            </Box>
         </>
     );
 

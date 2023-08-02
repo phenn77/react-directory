@@ -7,7 +7,8 @@ export const IndexPagination = (props: PaginationProps) => {
         <Box sx={{
             display: 'flex',
             width: 1,
-            justifyContent: 'center'
+            justifyContent: 'center',
+            bottom: 0
         }}>
             <Pagination
                 count={props.totalPage}
@@ -16,9 +17,8 @@ export const IndexPagination = (props: PaginationProps) => {
                 size='large'
                 onChange={props.onChange}
                 sx={{
-                    position: 'absolute',
-                    bottom: 0,
-                    mb: '40px'
+                    position: 'relative',
+                    my: '40px'
                 }}/>
         </Box>
     );
