@@ -8,7 +8,7 @@ interface HeaderProps {
     name: string
 }
 
-export const Header = (props: HeaderProps) => {
+export const HeaderWithImage = (props: HeaderProps) => {
     const BoxWithStyle = styled(Box)(({theme}) => ({
         '&::after': {
             backgroundImage: `url(${props.imageBackground})`,

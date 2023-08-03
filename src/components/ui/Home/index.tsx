@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Container} from "@mui/material";
-import {IndexPagination} from "../Pagination";
+import {HomePagination} from "../HomePagination";
 import {fetchData} from "../../../services";
 import {Loading} from "../Loading";
 import {Directory, IndexData, IndexResponseProps} from "../../../variables/interfaces";
@@ -69,7 +69,7 @@ export const Home = () => {
         <>
             <SearchBar
                 searchText={keyword}
-                onChange={(event) => setKeyword(event.target.value)}
+                onChange={(event: any) => setKeyword(event.target.value)}
                 showTextField={() => setIsClickedSearch(true)}
                 closeTextField={() => [setIsClickedSearch(false), setKeyword('')]}
                 isClicked={isClickedSearch}
@@ -86,9 +86,9 @@ export const Home = () => {
                     <ImageGallery data={data.data}/>
                 </Container>
 
-                <IndexPagination totalPage={data.totalPage}
-                                 page={page}
-                                 onChange={(event, value) => setPage(value)}
+                <HomePagination totalPage={data.totalPage}
+                                page={page}
+                                onChange={(event, value) => setPage(value)}
                 />
             </Box>
         </>

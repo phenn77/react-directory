@@ -2,7 +2,7 @@ import React from 'react';
 import {Box, Pagination} from "@mui/material";
 import {PaginationProps} from "../../../variables/interfaces";
 
-export const IndexPagination = (props: PaginationProps) => {
+export const HomePagination = (props: PaginationProps) => {
     return (
         <Box sx={{
             display: 'flex',

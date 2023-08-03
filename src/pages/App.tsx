@@ -3,41 +3,27 @@ import '../App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Navbar} from "../components/ui";
 import {Home} from "../components/ui/Home";
-import {View as ArtistView} from "../pages/artist";
-import {View as AlbumView} from "../pages/album";
+import {View as ArtistView} from "./artist/view";
+import {Add as ArtistAdd} from "../pages/artist/add";
+import {View as AlbumView} from "./album/view";
+import {NavbarRoutes} from "../variables/icon";
 
 function App() {
     return (
-        // <div className="App">
-        //   <header className="App-header">
-        //     <img src={logo} className="App-logo" alt="logo" />
-        //     <p>
-        //       Edit <code>src/App.tsx</code> and save to reload.
-        //     </p>
-        //     <a
-        //       className="App-link"
-        //       href="https://reactjs.org"
-        //       target="_blank"
-        //       rel="noopener noreferrer"
-        //     >
-        //       Learn React
-        //     </a>
-        //   </header>
-        // </div>
-
         <div className="container">
             <BrowserRouter>
-                <Navbar position={'right'} variant={'outlined'}/>
+                <Navbar position={'right'} variant={'outlined'} data={NavbarRoutes}/>
                 <Routes>
-                    <Route path="/"/>
+                    <Route path={"/"}/>
 
-                    <Route path="/artist" element={<Home/>}/>
-                    <Route path="/artist/view" element={<ArtistView/>}/>
+                    <Route path={"/artist"} element={<Home/>}/>
+                    <Route path={"/artist/view"} element={<ArtistView/>}/>
+                    <Route path={"/artist/add"} element={<ArtistAdd/>}/>
 
-                    <Route path="/album" element={<Home/>}/>
-                    <Route path="/album/view" element={<AlbumView/>}/>
+                    <Route path={"/album"} element={<Home/>}/>
+                    <Route path={"/album/view"} element={<AlbumView/>}/>
 
-                    <Route path="/single" element={<Home/>}/>
+                    <Route path={"/single"} element={<Home/>}/>
                 </Routes>
             </BrowserRouter>
         </div>

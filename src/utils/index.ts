@@ -5,9 +5,9 @@ export const imageOrientation = (url: string) => {
     const width: number = image.naturalWidth;
     const height: number = image.naturalHeight;
 
-
     let styling: any = {
         my: '40px',
+        objectFit: 'cover'
     };
 
     if (width > height) {

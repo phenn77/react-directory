@@ -19,10 +19,11 @@ export const MediaImage = (props: ImageProps) => {
                  },
                  ...(props.directory !== 'member') && {
                      borderRadius: '20px'
-                 }
+                 },
+                 objectFit: 'cover'
              }}
              alt={props.name}
-             src={`${props.imageUrl}?fit=contain`}
+             src={props.imageUrl}
              onClick={props.onClick}
         />
     )

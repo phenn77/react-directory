@@ -1,11 +1,11 @@
 import React from 'react';
 import {Box, ButtonGroup, IconButton, Tooltip} from "@mui/material";
 import {Link} from 'react-router-dom';
-import {NavbarRoutes} from "../../../variables/icon";
 
 interface NavbarProps {
     position: 'top' | 'left' | 'bottom' | 'right',
-    variant: 'contained' | 'outlined' | 'text'
+    variant: 'contained' | 'outlined' | 'text',
+    data: any
 }
 
 export const Navbar = (props: NavbarProps) => {
@@ -43,8 +43,8 @@ export const Navbar = (props: NavbarProps) => {
                     zIndex: 1
                 }}
             >
-                {NavbarRoutes && (
-                    NavbarRoutes.map((dt: any) => {
+                {
+                    props.data.map((dt: any) => {
                         return (
                             <Tooltip key={dt.name} title={dt.name} followCursor>
                                 <IconButton
@@ -55,7 +55,7 @@ export const Navbar = (props: NavbarProps) => {
                             </Tooltip>
                         )
                     })
-                )}
+                }
             </ButtonGroup>
         </Box>
     );

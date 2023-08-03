@@ -57,13 +57,14 @@ export const ImageGallery = (data: any) => {
                         padding: '10px'
                     }}>
                         <img
-                            src={`${data.filename}?fit=contain`}
-                            srcSet={`${data.filename}?fit=contain`}
+                            src={data.filename}
+                            srcSet={data.filename}
                             alt={data.name}
                             loading="lazy"
                             onClick={() => getInfo(data.id, data.name, data.filename)}
                             style={{
-                                borderRadius: '20px'
+                                borderRadius: '20px',
+                                objectFit: 'cover'
                             }}
                         />
                         <ImageListItemBar

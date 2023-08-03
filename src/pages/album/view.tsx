@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {DisplayPicture, Loading, Rate, Summary, Tracklist} from "../../components/ui";
+import {DisplayPicture, HeaderWithText, Loading, Rate, Summary, Tracklist} from "../../components/ui";
 import {useLocation, useNavigate} from "react-router-dom";
 import {getData} from "../../services/get";
 import {Directory} from "../../variables/interfaces";
@@ -52,17 +52,7 @@ export const View = () => {
                     minHeight: '100vh'
                 }}>
                     <Box>
-                        <Box component={Typography}
-                             variant={'h2'}
-                             align={'center'}
-                             sx={{
-                                 textWrap: 'balance',
-                                 fontWeight: 600,
-                                 mt: '40px'
-                             }}
-                        >
-                            {data.name.toUpperCase()}
-                        </Box>
+                        <HeaderWithText name={data.name}/>
                         <Typography variant={'h5'} align={'center'}>
                             {data.releaseYear}
                         </Typography>

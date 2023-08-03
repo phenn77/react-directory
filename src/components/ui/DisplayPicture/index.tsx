@@ -17,7 +17,7 @@ export const DisplayPicture = (props: ImageProps) => {
                 }
             }}
             alt={props.name}
-            src={`${props.imageUrl}?fit=contain`}
+            src={props.imageUrl}
         />
     );
 }

@@ -3,7 +3,7 @@ import {Box, Container} from "@mui/material";
 import {useLocation} from "react-router-dom";
 import {getData} from "../../services/get";
 import {Directory} from "../../variables/interfaces";
-import {Header, Loading, MediaList, Rate, SocialMedia, Summary} from "../../components/ui";
+import {HeaderWithImage, Loading, MediaList, Rate, SocialMedia, Summary} from "../../components/ui";
 
 export const View = () => {
     const {state} = useLocation();
@@ -76,7 +76,7 @@ export const View = () => {
         isLoading ? <Loading/> :
             (
                 <Box>
-                    <Header
+                    <HeaderWithImage
                         imageThumbnail={state.imageUrl}
                         imageBackground={"https://lh3.googleusercontent.com/DYIaU37AgOoki1s5dPLfw-dsd724OHpVXsP41_9kpNeKl-LWx6Za0Nf6QeTT7iRsLTYgSppzkzRLkw=w2880-h1200-p-l90-rj"}
                         name={state.name}/>
