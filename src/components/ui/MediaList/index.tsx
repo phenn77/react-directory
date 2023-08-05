@@ -1,11 +1,10 @@
 import React, {useState} from "react";
-import {Box, ImageList, ImageListItem, useMediaQuery} from "@mui/material";
+import {Box} from "@mui/material";
 import {MediaImage} from "../MediaImage";
 import {retrieveImageUrl} from "../../../utils";
 import {DotPagination} from "../DotPagination";
 import SwipeableViews from "react-swipeable-views";
 import {useNavigate} from "react-router-dom";
-import withWidth from "@mui/material/Hidden/withWidth";
 
 //https://github.com/oliviertassinari/react-swipeable-views
 
@@ -18,18 +17,20 @@ interface MediaData {
 interface MediaListProps {
     data: any,
     paginationPosition: 'top' | 'bottom' | 'right' | 'left',
-    directory: 'album' | 'single' | 'member'
+    directory: 'album' | 'single' | 'member',
+    windowSize?: number
 }
 
 export const MediaList = (props: MediaListProps) => {
-    // const width = withWidth();
-    // console.log(width);
-
     const navigate = useNavigate();
 
-    let mediaLimit = props.directory === 'member' ?
+    let mediaLimit: number = props.directory === 'member' ?
         Number(process.env.REACT_APP_MEMBER_LIMIT) :
         Number(process.env.REACT_APP_MEDIA_LIMIT);
+
+    if (props.windowSize && props.windowSize < 900) {
+        mediaLimit -= 2;
+    }
 
     const totalSteps: number = Math.ceil(props.data.length / mediaLimit);
     const [activeStep, setActiveStep] = useState<number>(0);
@@ -87,17 +88,28 @@ export const MediaList = (props: MediaListProps) => {
         }
     }
 
-
     const imageData: any = [];
+
+    console.log(data);
+
+    Object.keys(data)
+        .forEach(val => {
+            console.log(val);
+        });
     for (let i: number = 0; i < totalSteps; i++) {
+        const dataLength: number = Object.keys(data).length;
+
         imageData.push(
             <Box
                 key={`image-${i}`}
                 sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    ...(props.directory === 'member' && (dataLength !== 0 && dataLength < mediaLimit)) && {
+                        justifyContent: 'none'
+                    },
                     ...(props.directory !== 'member') && {
-                        display: 'flex',
                         flexWrap: 'wrap',
-                        justifyContent: 'center',
                         gap: '18px',
                         m: '20px'
                     },
@@ -142,7 +154,7 @@ export const MediaList = (props: MediaListProps) => {
                 />
             )}
 
-            { totalSteps > 1 && props.paginationPosition === 'bottom' && (
+            {totalSteps > 1 && props.paginationPosition === 'bottom' && (
                 <DotPagination
                     position={props.paginationPosition}
                     totalSteps={totalSteps}

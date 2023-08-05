@@ -9,22 +9,31 @@ export const MediaImage = (props: ImageProps) => {
         <Box
             key={props.name}
             component="img"
-             className={`media-image ${isMemberDirectory}`}
-             sx={{
-                 width: '150px',
-                 height: '150px',
-                 ...(props.directory === 'member') && {
-                     borderRadius: '75px',
-                     m: '20px'
-                 },
-                 ...(props.directory !== 'member') && {
-                     borderRadius: '20px'
-                 },
-                 objectFit: 'cover'
-             }}
-             alt={props.name}
-             src={props.imageUrl}
-             onClick={props.onClick}
+            className={`media-image ${isMemberDirectory}`}
+            sx={{
+                objectFit: 'cover',
+                width: {
+                    sm: '125px',
+                    md: '150px'
+                },
+                height: {
+                    sm: '125px',
+                    md: '150px'
+                },
+                ...(props.directory === 'member') && {
+                    borderRadius: '75px',
+                    m: {
+                        sm: '15px',
+                        md: '20px'
+                    }
+                },
+                ...(props.directory !== 'member') && {
+                    borderRadius: '20px'
+                }
+            }}
+            alt={props.name}
+            src={props.imageUrl}
+            onClick={props.onClick}
         />
     )
 }

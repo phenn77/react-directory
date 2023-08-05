@@ -6,7 +6,8 @@ import {ImageUpload} from "../../components/form";
 export const Add = () => {
     const [inputs, setInputs] = useState<any>({
         name: '',
-        alias: ''
+        alias: '',
+        summary: ''
     });
     const [inputPicture, setInputPicture] = useState<any>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -23,15 +24,13 @@ export const Add = () => {
         return () => clearTimeout(timeout);
     }, []);
 
-    console.log(inputs);
-
     const handleChange = (event: any) => {
         const name: string = event.target.name;
         const value: any = event.target.value;
         setInputs((values: any) => ({...values, [name]: value}));
-
-        inputs.name === '' ? setIsError(true) : setIsError(false);
     }
+
+    // inputs.name === '' ? setIsError(true) : setIsError(false);
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
@@ -81,7 +80,7 @@ export const Add = () => {
                                 margin={"dense"}
                                 value={inputs.alias}
                                 inputProps={{
-                                    maxLength: 50
+                                    maxLength: 10
                                 }}
                             />
                         </Box>

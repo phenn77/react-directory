@@ -11,7 +11,7 @@ export const Rate = (props: RateProps) => {
             display={'flex'}
             justifyContent={'center'}
             sx={{
-                my: '20px',
+                mt: '20px',
             }}>
             <Rating
                 defaultValue={props.rate}
@@ -19,9 +19,7 @@ export const Rate = (props: RateProps) => {
                 size='large'
                 readOnly
             sx={{
-                border: '2px solid grey',
-                p: '20px',
-                borderRadius: '30px'
+                p: '10px'
             }}/>
         </Box>
     );

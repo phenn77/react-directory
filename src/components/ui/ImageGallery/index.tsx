@@ -70,11 +70,14 @@ export const ImageGallery = (data: any) => {
                         <ImageListItemBar
                             title={data.name.toUpperCase()}
                             sx={{
-                                // background: 'grey',
                                 textAlign: 'center',
-                                // top: 0,
-                                // bottom: 0,
-                                visibility: 'hidden'
+                                visibility: 'hidden',
+                                "& .MuiImageListItemBar-title": {
+                                    fontSize: {
+                                        sm: '15px',
+                                        md: '25px'
+                                    }
+                                }
                             }}
                         />
                     </ImageListItemWithStyle>

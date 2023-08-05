@@ -17,10 +17,21 @@ export const View = () => {
         socialMedia: []
     });
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [windowSize, setWindowSize] = useState<number>(window.innerWidth);
 
     useEffect(() => {
         document.title = state.name;
         retrieveData();
+
+        const handleWindowResize = () => {
+            setWindowSize(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleWindowResize);
+
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
     }, []);
 
     const retrieveData = () => {
@@ -56,9 +67,16 @@ export const View = () => {
                     )
                 }
 
-                <MediaList directory={'member'} data={data.members} paginationPosition={'bottom'}/>
-
-                {/*<MemberList data={data.members}/>*/}
+                {
+                    data.members.length > 0 && (
+                        <MediaList
+                            directory={'member'}
+                            data={data.members}
+                            paginationPosition={'bottom'}
+                            windowSize={windowSize}
+                        />
+                    )
+                }
 
                 <Box sx={{
                     display: 'flex',
@@ -73,7 +91,7 @@ export const View = () => {
         );
 
     return (
-        isLoading ? <Loading/> :
+        // isLoading ? <Loading/> :
             (
                 <Box>
                     <HeaderWithImage

@@ -25,6 +25,12 @@ export const SocialMedia = (props: any) => {
                                 sx={{
                                     "&.MuiButtonBase-root:hover": {
                                         backgroundColor: "transparent"
+                                    },
+                                    "& .MuiSvgIcon-root": {
+                                        fontSize: {
+                                            sm: '30px',
+                                            md: '50px'
+                                        }
                                     }
                                 }}
                             >

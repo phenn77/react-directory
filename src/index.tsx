@@ -3,26 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './pages/App';
 import reportWebVitals from './reportWebVitals';
-import {createTheme, ThemeProvider} from '@mui/material/styles';
+import {ThemeProvider} from '@mui/material/styles';
+import {theme} from "./styles/theme";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 
-const theme = createTheme({
-    typography: {
-        allVariants: {
-            fontFamily: 'Copperplate',
-        },
-        body1: {
-            lineHeight: '30px',
-            fontSize: '16px'
-        },
-        caption: {
-            fontSize: '16px'
-        }
-    }
-});
+
 root.render(
     // <React.StrictMode>
     <ThemeProvider theme={theme}>

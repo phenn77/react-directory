@@ -39,24 +39,19 @@ export const NavbarRoutes = [
 export const SocialMediaIcons: Record<string, ReactElement> = {
     twitter: <Twitter
         color={'primary'}
-        sx={{
-            fontSize: '50px'
-        }}/>,
+    />,
     instagram: <Instagram
         className={"instagram"}
         sx={{
-            fontSize: '50px',
-            borderRadius: '15px',
+            borderRadius: {
+                sm: '10px',
+                md: '15px'
+            },
             color: '#f6f6f6'
         }}/>,
     website: <Language
-        color={'info'}
-        sx={{
-            fontSize: '50px'
-        }}/>,
+        color={'info'}/>,
     facebook: <Facebook
         color={'primary'}
-        sx={{
-            fontSize: '50px'
-        }}/>
+    />
 }

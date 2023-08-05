@@ -2,7 +2,7 @@ import React from 'react';
 import '../App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Navbar} from "../components/ui";
-import {Home} from "../components/ui/Home";
+import {Home} from "../components/ui";
 import {View as ArtistView} from "./artist/view";
 import {Add as ArtistAdd} from "../pages/artist/add";
 import {View as AlbumView} from "./album/view";
