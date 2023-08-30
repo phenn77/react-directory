@@ -91,7 +91,7 @@ export const View = () => {
         );
 
     return (
-        // isLoading ? <Loading/> :
+        isLoading ? <Loading/> :
             (
                 <Box>
                     <HeaderWithImage

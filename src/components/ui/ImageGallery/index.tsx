@@ -51,6 +51,13 @@ export const ImageGallery = (data: any) => {
         <Container>
             <ImageList
                 cols={4}
+                sx={{
+                    gridTemplateColumns: {
+                        sm: 'repeat(3, 1fr) !important',
+                        md: 'repeat(4, 1fr) !important',
+                        lg: 'repeat(5, 1fr) !important'
+                    }
+                }}
             >
                 {images.map((data: ImageGalleryProps) => (
                     <ImageListItemWithStyle key={data.id} sx={{
@@ -75,7 +82,8 @@ export const ImageGallery = (data: any) => {
                                 "& .MuiImageListItemBar-title": {
                                     fontSize: {
                                         sm: '15px',
-                                        md: '25px'
+                                        md: '25px',
+                                        lg: '20px'
                                     }
                                 }
                             }}

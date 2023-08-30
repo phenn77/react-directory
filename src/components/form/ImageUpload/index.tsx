@@ -26,20 +26,31 @@ export const ImageUpload = (props: ImageUploadInput) => {
                     />
                 )
             }
-
-            <Button
-                variant="contained"
-                component="label"
-            >
-                Upload File
-                <input
-                    type="file"
-                    accept={"image/*"}
-                    onChange={props.onChange}
-                    hidden
-                    required
-                />
-            </Button>
+            <Box sx={{
+                display: 'flex'
+            }}>
+                <Button
+                    variant="contained"
+                    component="label"
+                >
+                    Upload File
+                    <input
+                        type="file"
+                        accept={"image/*"}
+                        onChange={props.onChange}
+                        hidden
+                        required
+                    />
+                </Button>
+                <Button
+                    sx={{
+                        ml: '10px',
+                        color: 'black'
+                    }}
+                >
+                    Clear
+                </Button>
+            </Box>
         </Box>
     )
 }

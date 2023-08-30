@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Box, Button, Container, TextField, Typography} from "@mui/material";
 import {HeaderWithText, Loading} from "../../components/ui";
-import {ImageUpload} from "../../components/form";
+import {ImageUpload, Summary} from "../../components/form";
 
 export const Add = () => {
     const [inputs, setInputs] = useState<any>({
@@ -86,9 +86,10 @@ export const Add = () => {
                         </Box>
                     </Box>
 
-                    <Box>
-
-                    </Box>
+                    <Summary
+                        input={inputs.summary}
+                        onChange={(event: any) => handleChange(event)}
+                    />
 
                     <Box sx={{
                         display: 'flex',
