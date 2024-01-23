@@ -1,20 +1,24 @@
-import React, {useEffect, useState} from "react";
-import {Box, Button, Container, TextField, Typography} from "@mui/material";
-import {HeaderWithText, Loading} from "../../components/ui";
-import {ImageUpload, Summary} from "../../components/form";
+import React, { useEffect, useState } from "react";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { HeaderWithText, Loading } from "../../components/ui";
+import { BgImageUpload, ImageUpload, Summary } from "../../components/form";
+import axios from "axios";
+import { Datepicker } from "../../components/ui/Datepicker";
 
 export const Add = () => {
     const [inputs, setInputs] = useState<any>({
         name: '',
         alias: '',
-        summary: ''
+        origin: '',
+        birthdate: '',
+        summary: '',
+        image: '',
+        bgImage: ''
     });
-    const [inputPicture, setInputPicture] = useState<any>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [isError, setIsError] = useState<boolean>(true);
 
     useEffect(() => {
-        document.title = 'ADD ARTIST';
+        document.title = 'Add Artist';
 
         setIsLoading(true);
         const timeout = setTimeout(() => {
@@ -27,40 +31,100 @@ export const Add = () => {
     const handleChange = (event: any) => {
         const name: string = event.target.name;
         const value: any = event.target.value;
-        setInputs((values: any) => ({...values, [name]: value}));
+        setInputs((values: any) => ({ ...values, [name]: value }));
     }
 
-    // inputs.name === '' ? setIsError(true) : setIsError(false);
+    const handleMandatoryChange = (event: any) => {
+        const name: string = event.target.name;
+        const value: any = event.target.value;
+
+        setInputs((values: any) => ({ ...values, [name]: value }));
+    }
+
+    const handleImg = (event: any, name: string) => {
+        console.log(event);
+        let img: string;
+        if (event == null) {
+            img = '';
+        } else {
+            img = event.target.files[0];
+        }
+
+        setInputs((values: any) => ({ ...values, [name]: img }));
+    }
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
+
+        axios({
+            method: "POST",
+            url: process.env.REACT_APP_BE_URL + "/artist/add",
+            data: inputs,
+            headers: {
+                "Authorization": "Bearer "
+            }
+        });
     }
 
     return (
-        isLoading ? <Loading/> : (
+        isLoading ? <Loading /> : (
             <Container>
                 <Box sx={{
                     display: 'flex',
                     flexDirection: 'column'
                 }}>
-                    <HeaderWithText name={'artist'}/>
+                    <HeaderWithText name={'artist'} />
 
                     <Box sx={{
                         display: 'flex',
                         justifyContent: 'space-evenly',
                         p: '20px'
                     }}>
-                        <ImageUpload
-                            imageFile={inputPicture}
-                            onChange={(event: any) => setInputPicture(event.target.files[0])}
-                        />
+                        <Box sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-evenly'
+                        }}>
+                            {/* <ImageUpload
+                                imageFile={inputPicture['image']}
+                                onChange={(event: any) => setInputPicture({image: event.target.files[0]})}
+                                onClear={() => setInputPicture({image: ''})}
+                            />
+                            <BgImageUpload
+                                imageFile={inputPicture['bgImage']}
+                                onChange={(event: any) => setInputPicture({bgImage: event.target.files[0]})}
+                                onClear={() => setInputPicture({bgImage: ''})}
+                            /> */}
+
+                            <Box sx={{
+                                ...(inputs['image'] !== '' && inputs['bgImage'] === '') && {
+                                    pb: '20px'
+                                }
+                            }}>
+                                <ImageUpload
+                                    imageFile={inputs.image}
+                                    onChange={(event: any) => handleImg(event, 'image')}
+                                    onClear={() => handleImg(null, 'image')}
+                                />
+                            </Box>
+
+                            <Box>
+                                <BgImageUpload
+                                    imageFile={inputs.bgImage}
+                                    onChange={(event: any) => handleImg(event, 'bgImage')}
+                                    onClear={() => handleImg(null, 'bgImage')}
+                                />
+                            </Box>
+                        </Box>
 
                         <Box sx={{
                             display: 'flex',
-                            flexDirection: 'column'
+                            flexDirection: 'column',
+                            justifyContent: 'center'
                         }}>
+                            {/* REQUIRED */}
                             <TextField
-                                onChange={(event: any) => handleChange(event)}
+                                onChange={(event: any) => handleMandatoryChange(event)}
                                 autoComplete={'off'}
                                 name={'name'}
                                 placeholder={'name'}
@@ -70,7 +134,7 @@ export const Add = () => {
                                     maxLength: 50
                                 }}
                                 required
-                                error={isError}
+                                error={inputs.name == ''}
                             />
                             <TextField
                                 onChange={(event: any) => handleChange(event)}
@@ -83,12 +147,30 @@ export const Add = () => {
                                     maxLength: 10
                                 }}
                             />
+
+                            {/* REQUIRED */}
+                            <TextField
+                                onChange={(event: any) => handleMandatoryChange(event)}
+                                autoComplete={'off'}
+                                name={'origin'}
+                                placeholder={'origin'}
+                                margin={"dense"}
+                                value={inputs.origin}
+                                inputProps={{
+                                    maxLength: 10
+                                }}
+                                required
+                                error={inputs.origin == ''}
+                            />
+                            <Datepicker placeholder="Birthday" />
                         </Box>
                     </Box>
 
+                    {/* REQUIRED */}
                     <Summary
                         input={inputs.summary}
-                        onChange={(event: any) => handleChange(event)}
+                        onChange={(event: any) => handleMandatoryChange(event)}
+                        error={inputs.summary == ''}
                     />
 
                     <Box sx={{
@@ -97,7 +179,7 @@ export const Add = () => {
                     }}>
                         <Button
                             variant={'contained'}
-                            disabled={isError}
+                            disabled={inputs.name == '' && inputs.origin == '' && inputs.summary == ''}
                             onClick={(event: any) => handleSubmit(event)}
                             sx={{
                                 width: 'max-content'

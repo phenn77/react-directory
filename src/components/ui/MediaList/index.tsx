@@ -89,13 +89,6 @@ export const MediaList = (props: MediaListProps) => {
     }
 
     const imageData: any = [];
-
-    console.log(data);
-
-    Object.keys(data)
-        .forEach(val => {
-            console.log(val);
-        });
     for (let i: number = 0; i < totalSteps; i++) {
         const dataLength: number = Object.keys(data).length;
 

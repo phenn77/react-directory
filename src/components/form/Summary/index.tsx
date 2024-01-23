@@ -3,7 +3,8 @@ import {Box, TextField} from "@mui/material";
 
 interface SummaryProps {
     input: string,
-    onChange: (event: any) => void
+    onChange: (event: any) => void,
+    error: any
 }
 
 export const Summary = (props: SummaryProps) => {
@@ -23,6 +24,8 @@ export const Summary = (props: SummaryProps) => {
                 sx={{
                     width: 1
                 }}
+                error={props.error}
+                required
             />
         </Box>
     )

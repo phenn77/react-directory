@@ -1,4 +1,4 @@
-export const retrieveImageUrl = (props: any) => {
+const retrieveImageUrl = (props: any) => {
     let imgUrl: string;
 
     const defaultPicture: boolean | undefined = props.defaultPicture;
@@ -9,4 +9,13 @@ export const retrieveImageUrl = (props: any) => {
     }
 
     return imgUrl;
+}
+
+const capitalize = (name: string) => {
+    return name.charAt(0).toUpperCase() + name.slice(1);
+}
+
+export {
+    retrieveImageUrl,
+    capitalize
 }

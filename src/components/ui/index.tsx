@@ -1,3 +1,4 @@
+import {Datepicker} from "./Datepicker";
 import {DisplayPicture} from "./DisplayPicture"
 import {DotPagination} from "./DotPagination";
 import {HeaderWithImage} from "./HeaderWithImage";

@@ -7,6 +7,7 @@ import {Directory, IndexData, IndexResponseProps} from "../../../variables/inter
 import {useLocation} from "react-router-dom";
 import {SearchBar} from "../../form";
 import {ImageGallery} from "../ImageGallery";
+import { capitalize } from '../../../utils';
 
 export const Home = () => {
     const currentDirectory: string = useLocation().pathname.replace("/", "");
@@ -22,7 +23,7 @@ export const Home = () => {
     );
 
     useEffect(() => {
-        document.title = currentDirectory.toUpperCase();
+        document.title = capitalize(currentDirectory);
         retrieveData();
     }, [currentDirectory, page]);
 

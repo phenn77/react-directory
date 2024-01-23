@@ -1,14 +1,13 @@
 import React from "react";
 import {Box, Button} from "@mui/material";
-import {DisplayPicture} from "../../ui";
 
-interface ImageUploadInput {
+interface BgImageUploadInput {
     imageFile?: any,
     onChange: (event: any) => void,
     onClear: (event: any) => void
 }
 
-export const ImageUpload = (props: ImageUploadInput) => {
+export const BgImageUpload = (props: BgImageUploadInput) => {
     const imageUrl: string | undefined = props.imageFile ? URL.createObjectURL(props.imageFile) : undefined;
 
     return (
@@ -20,11 +19,22 @@ export const ImageUpload = (props: ImageUploadInput) => {
         }}>
             {
                 imageUrl && (
-                    <DisplayPicture
-                        imageUrl={imageUrl}
-                        name={'artist'}
-                        directory={'artist'}
-                    />
+                        <Box
+                            component="img"
+                            sx={{
+                                my: '40px',
+                                objectFit: 'contain',
+                                width: {
+                                    sm: '320px',
+                                    md: '400px'
+                                },
+                                height: {
+                                    sm: '160px',
+                                    md: '200px'
+                                }
+                            }}
+                            src={imageUrl}
+                        />
                 )
             }
             <Box sx={{
@@ -33,8 +43,9 @@ export const ImageUpload = (props: ImageUploadInput) => {
                 <Button
                     variant="contained"
                     component="label"
+                    color="secondary"
                 >
-                    Image
+                    BG Image
                     <input
                         type="file"
                         accept={"image/*"}
