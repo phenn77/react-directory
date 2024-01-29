@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Box, CircularProgress, CircularProgressProps, Typography} from "@mui/material";
+import React, { useEffect, useState } from 'react';
+import { Box, CircularProgress, CircularProgressProps, Typography } from "@mui/material";
 
 function CircularProgressWithLabel(
     props: CircularProgressProps & { value: number },
@@ -19,7 +19,7 @@ function CircularProgressWithLabel(
                 {...props}
                 sx={{
                     color: 'grey'
-                }}/>
+                }} />
             <Box position='absolute'>
                 <Typography
                     variant="caption"
@@ -45,6 +45,6 @@ export const Loading = () => {
     }, []);
 
     return (
-        <CircularProgressWithLabel value={progress}/>
+        <CircularProgressWithLabel value={progress} />
     );
 }

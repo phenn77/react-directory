@@ -1,10 +1,10 @@
-import React, {useState} from "react";
-import {Box} from "@mui/material";
-import {MediaImage} from "../MediaImage";
-import {retrieveImageUrl} from "../../../utils";
-import {DotPagination} from "../DotPagination";
+import React, { useState } from "react";
+import { Box } from "@mui/material";
+import { MediaImage } from "../MediaImage";
+import { retrieveImageUrl } from "../../../utils";
+import { DotPagination } from "../DotPagination";
 import SwipeableViews from "react-swipeable-views";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 //https://github.com/oliviertassinari/react-swipeable-views
 

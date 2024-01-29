@@ -5,7 +5,7 @@ const retrieveImageUrl = (props: any) => {
     if (defaultPicture) {
         imgUrl = process.env.REACT_APP_BE_URL + props.filename;
     } else {
-        imgUrl = props.pictures.get(0).filename;
+        imgUrl = props.filename;
     }
 
     return imgUrl;
@@ -15,7 +15,18 @@ const capitalize = (name: string) => {
     return name.charAt(0).toUpperCase() + name.slice(1);
 }
 
+const retrieveMessage = (msg: string) => {
+    try {
+        const message = msg.substring(0, msg.indexOf('.'));
+
+        return message !== '' ? message : msg;
+    } catch (e: any) {
+        return 'system error.';
+    }
+}
+
 export {
+    capitalize,
     retrieveImageUrl,
-    capitalize
+    retrieveMessage
 }

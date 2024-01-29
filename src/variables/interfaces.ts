@@ -29,6 +29,21 @@ export interface GetRequestProps {
     directory: Directory
 }
 
+export interface AddRequestProps {
+    directory: string,
+    token: string,
+    requestBody: any
+}
+
+export interface LoginRequestProps {
+    username: string,
+    password: string
+}
+
+export interface ErrorResponseProps {
+    message: string
+}
+
 export interface ImageGalleryProps {
     id: string,
     name: string,

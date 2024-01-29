@@ -1,8 +1,8 @@
 import React from 'react';
-import {Container, ImageList, ImageListItem, ImageListItemBar, styled} from "@mui/material";
-import {ImageGalleryProps} from "../../../variables/interfaces";
-import {useLocation, useNavigate} from "react-router-dom";
-import {retrieveImageUrl} from "../../../utils";
+import { Container, ImageList, ImageListItem, ImageListItemBar, styled } from "@mui/material";
+import { ImageGalleryProps } from "../../../variables/interfaces";
+import { useLocation, useNavigate } from "react-router-dom";
+import { retrieveImageUrl } from "../../../utils";
 
 export const ImageGallery = (data: any) => {
     const currentDirectory = useLocation().pathname.replace("/", "");
@@ -31,7 +31,7 @@ export const ImageGallery = (data: any) => {
         });
     }
 
-    const ImageListItemWithStyle = styled(ImageListItem)(({theme}) => ({
+    const ImageListItemWithStyle = styled(ImageListItem)(({ theme }) => ({
         "&:hover": {
             cursor: "pointer",
             opacity: 0.5,
@@ -53,7 +53,7 @@ export const ImageGallery = (data: any) => {
                 cols={4}
                 sx={{
                     gridTemplateColumns: {
-                        sm: 'repeat(3, 1fr) !important',
+                        sm: 'repeat(4, 1fr) !important',
                         md: 'repeat(4, 1fr) !important',
                         lg: 'repeat(5, 1fr) !important'
                     }

@@ -1,6 +1,6 @@
 import React from "react";
-import {Box, Button} from "@mui/material";
-import {DisplayPicture} from "../../ui";
+import { Box, Button } from "@mui/material";
+import { DisplayPicture } from "../../ui";
 
 interface ImageUploadInput {
     imageFile?: any,
@@ -20,10 +20,30 @@ export const ImageUpload = (props: ImageUploadInput) => {
         }}>
             {
                 imageUrl && (
-                    <DisplayPicture
-                        imageUrl={imageUrl}
-                        name={'artist'}
-                        directory={'artist'}
+                    // <DisplayPicture
+                    //     imageUrl={imageUrl}
+                    //     name={'artist'}
+                    //     directory={'artist'}
+                    // />
+                    <Box
+                        component="img"
+                        sx={{
+                            my: '40px',
+                            objectFit: 'cover',
+                            width: {
+                                sm: '160px',
+                                md: '200px'
+                            },
+                            height: {
+                                sm: '160px',
+                                md: '200px'
+                            },
+                            borderRadius: {
+                                sm: '80px',
+                                md: '160px'
+                            }
+                        }}
+                        src={imageUrl}
                     />
                 )
             }

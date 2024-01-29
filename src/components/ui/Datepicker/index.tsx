@@ -16,6 +16,9 @@ export const Datepicker = (props: DatePickerInput) => {
       <DemoContainer components={["DatePicker"]}>
         <DemoItem>
           <DatePicker
+            sx={{
+              pb: '4px'
+            }}
             maxDate={today}
             format="DD-MM-YYYY"
             slotProps={{ textField: { placeholder: props.placeholder } }}

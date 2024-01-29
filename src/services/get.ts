@@ -1,5 +1,5 @@
 import axios from "axios";
-import {GetRequestProps} from "../variables/interfaces";
+import { GetRequestProps } from "../variables/interfaces";
 
 export const getData = async (req: GetRequestProps) => {
     try {
