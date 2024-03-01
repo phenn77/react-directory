@@ -1,5 +1,6 @@
 import axios from "axios";
 import { AddRequestProps } from "../variables/interfaces";
+import { uploadImage } from "./image";
 
 export const addData = async (req: AddRequestProps) => {
     const baseUrl: string = process.env.REACT_APP_BE_URL + `${req.directory}/add`;
@@ -9,8 +10,6 @@ export const addData = async (req: AddRequestProps) => {
 
     delete req.requestBody.image;
     delete req.requestBody.bgImage;
-
-    console.log(req.requestBody);
 
     try {
         const response = await axios
@@ -25,6 +24,28 @@ export const addData = async (req: AddRequestProps) => {
 
         console.log(response);
 
+        // Upload Display Picture
+        await uploadImage({
+            directory: 'Artist',
+            id: response.data._id,
+            currentlyUsed: 'true',
+            image: image,
+            token: req.token,
+            isBgImage: 'false'
+        });
+
+        // Upload Background Image
+        if (bgImage !== null) {
+            await uploadImage({
+                directory: 'Artist',
+                id: response.data._id,
+                currentlyUsed: 'true',
+                image: image,
+                token: req.token,
+                isBgImage: 'true'
+            });
+        }
+        
         return response.data;
     } catch (e: any) {
         console.log(e.response.data.message);

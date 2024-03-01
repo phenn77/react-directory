@@ -4,7 +4,13 @@ import { IndexRequestProps, IndexResponseProps } from "../variables/interfaces";
 export const fetchData = async (req: IndexRequestProps): Promise<IndexResponseProps> => {
     try {
         const baseUrl: string = process.env.REACT_APP_BE_URL + `${req.directory}`;
-        const response = await axios.get(`${baseUrl}?page=${req.pageNumber}&keyword=${req.keyword}`)
+
+        let param = `?page=${req.pageNumber}`;
+        if (req.keyword !== '') {
+            param += `&keyword=${req.keyword}`;
+        }
+
+        const response = await axios.get(`${baseUrl}${param}`)
         console.log(response);
 
         return response.data;

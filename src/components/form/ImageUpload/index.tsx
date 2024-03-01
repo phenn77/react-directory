@@ -1,11 +1,12 @@
 import React from "react";
 import { Box, Button } from "@mui/material";
-import { DisplayPicture } from "../../ui";
+import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred';
 
 interface ImageUploadInput {
     imageFile?: any,
     onChange: (event: any) => void,
-    onClear: (event: any) => void
+    onClear: (event: any) => void,
+    required: boolean
 }
 
 export const ImageUpload = (props: ImageUploadInput) => {
@@ -20,11 +21,6 @@ export const ImageUpload = (props: ImageUploadInput) => {
         }}>
             {
                 imageUrl && (
-                    // <DisplayPicture
-                    //     imageUrl={imageUrl}
-                    //     name={'artist'}
-                    //     directory={'artist'}
-                    // />
                     <Box
                         component="img"
                         sx={{
@@ -53,14 +49,15 @@ export const ImageUpload = (props: ImageUploadInput) => {
                 <Button
                     variant="contained"
                     component="label"
+                    startIcon={props.required && props.imageFile === '' ? <ReportGmailerrorredIcon color="error" fontSize="small" /> : ''}
                 >
-                    Image
+                    IMAGE
+
                     <input
                         type="file"
                         accept={"image/*"}
                         onChange={props.onChange}
                         hidden
-                        required
                     />
                 </Button>
                 <Button

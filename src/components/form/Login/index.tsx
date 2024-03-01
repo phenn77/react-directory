@@ -1,148 +1,189 @@
-import { Box, Button, Modal, TextField, Typography } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import {
+  Box,
+  Button,
+  IconButton,
+  InputAdornment,
+  Modal,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { useState } from "react";
 import { login } from "../../../services/login";
 import { StatusModal } from "../../ui";
 
 interface LoginProps {
-    path: string
+  path: string;
 }
 
 export const Login = (req: LoginProps) => {
-    const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(true);
+  const [openModal, setOpenModal] = useState(true);
 
-    const [input, setInput] = useState<any>({
-        username: '',
-        password: '',
-    });
+  const [input, setInput] = useState<any>({
+    username: "",
+    password: "",
+  });
 
-    const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-    const handleChange = (event: any) => {
-        const name: string = event.target.name;
-        const value: any = event.target.value;
-        setInput((values: any) => ({ ...values, [name]: value }));
-    }
+  const handleChange = (event: any) => {
+    const name: string = event.target.name;
+    const value: any = event.target.value;
+    setInput((values: any) => ({ ...values, [name]: value }));
+  };
 
-    const [isSubmit, setSubmit] = useState(false);
-    const [result, setResult] = useState({
-        status: '',
-        message: ''
-    })
+  const [isSubmit, setSubmit] = useState(false);
+  const [result, setResult] = useState({
+    status: "",
+    message: "",
+  });
 
-    const handleSubmit = (event: any) => {
-        setSubmit(true);
-        // setLoading(true);
-        event.preventDefault();
+  const [showPassword, setShowPassword] = useState(false);
 
-        const timeout = setTimeout(() => {
-            login(input)
-                .then((response) => {
-                    sessionStorage.setItem('token', response.token);
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
-                    setResult({
-                        status: 'success',
-                        message: 'login success.'
-                    });
+  const handleSubmit = (event: any) => {
+    setSubmit(true);
+    // setLoading(true);
+    event.preventDefault();
 
-                    setTimeout(() => {
-                        setOpen(false);
+    const timeout = setTimeout(() => {
+      login(input)
+        .then((response) => {
+          sessionStorage.setItem("token", response.token);
 
-                        window.location.href = req.path;
-                    }, 3000);
-                })
-                .catch((response) => {
-                    setResult({
-                        status: 'failed',
-                        message: response
-                    })
+          setResult({
+            status: "success",
+            message: "login success.",
+          });
 
-                    setTimeout(() => {
-                        setSubmit(false);
-                        setResult({
-                            status: '',
-                            message: ''
-                        })
-                    }, 3000);
-                });
-        }, 3000);
+          setTimeout(() => {
+            setOpen(false);
 
-        return () => clearTimeout(timeout);
-    }
+            window.location.href = req.path;
+          }, 3000);
+        })
+        .catch((response) => {
+          setResult({
+            status: "failed",
+            message: response,
+          });
 
-    return (
-        isSubmit ?
-            <StatusModal status={result.status} message={result.message} open={open} />
-            :
-            (
-                <Modal
-                    open={open}
-                // onClose={handleClose}
-                >
-                    <Box sx={{
-                        position: 'absolute' as 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        width: 400,
-                        bgcolor: 'background.paper',
-                        borderRadius: '20px',
-                        boxShadow: 24,
-                        ...(!isSubmit) && {
-                            p: 4
-                        }
-                    }}>
-                        <Box sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            px: '20px'
-                        }}>
-                            <TextField
-                                onChange={(event: any) => handleChange(event)}
-                                autoComplete={'off'}
-                                name={'username'}
-                                placeholder={'username'}
-                                margin={"dense"}
-                                value={input.username}
-                                inputProps={{
-                                    maxLength: 20
-                                }}
-                                required
-                                error={!input.username}
-                            />
+          setTimeout(() => {
+            setSubmit(false);
+            setResult({
+              status: "",
+              message: "",
+            });
+          }, 3000);
+        });
+    }, 3000);
 
-                            <TextField
-                                onChange={(event: any) => handleChange(event)}
-                                autoComplete={'off'}
-                                name={'password'}
-                                placeholder={'password'}
-                                margin={"dense"}
-                                value={input.password}
-                                inputProps={{
-                                    maxLength: 20
-                                }}
-                                required
-                                type={'password'}
-                                error={!input.password}
-                            />
-                        </Box>
+    return () => clearTimeout(timeout);
+  };
 
-                        <Box sx={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            pt: '20px'
-                        }}>
-                            <Button
-                                variant={'contained'}
-                                disabled={!input.username || !input.password}
-                                onClick={(event: any) => handleSubmit(event)}
-                            >
-                                <Typography>
-                                    login
-                                </Typography>
-                            </Button>
-                        </Box>
-                    </Box>
-                </Modal>
-            )
-    )
-}
+  const style = {
+    "& label.Mui-focused": {
+      color: "black",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "black",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "black",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "black",
+      },
+    },
+  };
+
+  return isSubmit ? (
+    <StatusModal status={result.status} message={result.message} open={open} />
+  ) : (
+    <Modal open={openModal} onClose={() => window.location.href = window.location.href}>
+      <Box
+        sx={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: 400,
+          bgcolor: "background.paper",
+          borderRadius: "20px",
+          boxShadow: 24,
+          ...(!isSubmit && {
+            p: 4,
+          }),
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            px: "20px",
+          }}
+        >
+          <TextField
+            onChange={(event: any) => handleChange(event)}
+            autoComplete={"off"}
+            name={"username"}
+            placeholder={"username"}
+            margin={"dense"}
+            value={input.username}
+            inputProps={{
+              maxLength: 20,
+            }}
+            required
+            error={!input.username}
+            sx={style}
+          />
+
+          <TextField
+            onChange={(event: any) => handleChange(event)}
+            autoComplete={"off"}
+            name={"password"}
+            placeholder={"password"}
+            margin={"dense"}
+            value={input.password}
+            inputProps={{
+              maxLength: 20,
+            }}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={handleShowPassword} edge="end">
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+            required
+            type={showPassword ? "text" : "password"}
+            error={!input.password}
+          />
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            pt: "20px",
+          }}
+        >
+          <Button
+            variant={"contained"}
+            disabled={!input.username || !input.password}
+            onClick={(event: any) => handleSubmit(event)}
+          >
+            <Typography>login</Typography>
+          </Button>
+        </Box>
+      </Box>
+    </Modal>
+  );
+};

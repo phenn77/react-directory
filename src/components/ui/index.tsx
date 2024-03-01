@@ -1,3 +1,4 @@
+import { ActionNavbar } from "./ActionNavbar";
 import { DisplayPicture } from "./DisplayPicture";
 import { DotPagination } from "./DotPagination";
 import { HeaderWithImage } from "./HeaderWithImage";
@@ -16,20 +17,21 @@ import { Summary } from "./Summary";
 import { Tracklist } from "./Tracklist";
 
 export {
-    DisplayPicture,
-    DotPagination,
-    HeaderWithImage,
-    HeaderWithText,
-    Home,
-    HomePagination,
-    ImageGallery,
-    Loading,
-    MediaImage,
-    MediaList,
-    Navbar,
-    Rate,
-    SocialMedia,
-    StatusModal,
-    Summary,
-    Tracklist
+  ActionNavbar,
+  DisplayPicture,
+  DotPagination,
+  HeaderWithImage,
+  HeaderWithText,
+  Home,
+  HomePagination,
+  ImageGallery,
+  Loading,
+  MediaImage,
+  MediaList,
+  Navbar,
+  Rate,
+  SocialMedia,
+  StatusModal,
+  Summary,
+  Tracklist,
 };

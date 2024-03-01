@@ -35,6 +35,20 @@ export interface AddRequestProps {
     requestBody: any
 }
 
+export interface UploadImageProps {
+    directory: string,
+    id: string,
+    image: string,
+    currentlyUsed: string,
+    token: string,
+    isBgImage: string
+}
+
+export interface RetrieveImageProps {
+    imageId: string,
+    imageName: string
+}
+
 export interface LoginRequestProps {
     username: string,
     password: string
@@ -47,7 +61,7 @@ export interface ErrorResponseProps {
 export interface ImageGalleryProps {
     id: string,
     name: string,
-    filename: string
+    fileSource: string
 }
 
 export interface ImageProps {
