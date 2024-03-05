@@ -15,6 +15,7 @@ export const Navbar = (props: NavbarProps) => {
 
   return (
     <Box
+      className={"navbar"}
       sx={{
         display: "flex",
         width: 1,

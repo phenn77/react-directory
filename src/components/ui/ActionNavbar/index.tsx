@@ -40,6 +40,7 @@ export const ActionNavbar = (props: ActionProps) => {
 
   return (
     <Box
+      className={"actionNavbar"}
       sx={{
         bottom: 0,
         position: "fixed",
@@ -69,7 +70,7 @@ export const ActionNavbar = (props: ActionProps) => {
         </Tooltip>
       )}
 
-      {callLogin && <Login path={window.location.href}/>}
+      {callLogin && <Login path={window.location.href} />}
 
       {token !== "" && !openHome && (
         <Tooltip key={"home"} title={"home"} followCursor>
@@ -95,7 +96,9 @@ export const ActionNavbar = (props: ActionProps) => {
         <ButtonGroup
           sx={{
             display: "flex",
-            flexDirection: "column",
+            flexDirection: {
+              lg: "column",
+            },
           }}
         >
           {!isAddUrl && !isViewUrl && (

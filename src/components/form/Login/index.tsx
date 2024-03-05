@@ -85,28 +85,15 @@ export const Login = (req: LoginProps) => {
     return () => clearTimeout(timeout);
   };
 
-  const style = {
-    "& label.Mui-focused": {
-      color: "black",
-    },
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "black",
-    },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "black",
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: "black",
-      },
-    },
-  };
-
   return isSubmit ? (
     <StatusModal status={result.status} message={result.message} open={open} />
   ) : (
-    <Modal open={openModal} onClose={() => window.location.href = window.location.href}>
+    <Modal
+      open={openModal}
+      onClose={() => (window.location.href = window.location.href)}
+    >
       <Box
+        className={"loginModal"}
         sx={{
           position: "absolute",
           top: "50%",
@@ -140,7 +127,6 @@ export const Login = (req: LoginProps) => {
             }}
             required
             error={!input.username}
-            sx={style}
           />
 
           <TextField

@@ -22,8 +22,6 @@ export const addData = async (req: AddRequestProps) => {
                     }
                 });
 
-        console.log(response);
-
         // Upload Display Picture
         await uploadImage({
             directory: 'Artist',
@@ -40,7 +38,7 @@ export const addData = async (req: AddRequestProps) => {
                 directory: 'Artist',
                 id: response.data._id,
                 currentlyUsed: 'true',
-                image: image,
+                image: bgImage,
                 token: req.token,
                 isBgImage: 'true'
             });

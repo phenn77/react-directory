@@ -5,7 +5,7 @@ import React from "react";
 import dayjs from "dayjs";
 
 interface DatePickerInput {
-  placeholder: string
+  placeholder: string;
 }
 
 export const Datepicker = (props: DatePickerInput) => {
@@ -16,8 +16,9 @@ export const Datepicker = (props: DatePickerInput) => {
       <DemoContainer components={["DatePicker"]}>
         <DemoItem>
           <DatePicker
+            className={"birthdayPicker"}
             sx={{
-              pb: '4px'
+              pb: "4px",
             }}
             maxDate={today}
             format="DD-MM-YYYY"
