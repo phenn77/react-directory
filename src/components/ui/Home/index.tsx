@@ -85,6 +85,7 @@ export const Home = () => {
         }}
       >
         <Container
+          className={"homepage"}
           sx={{
             height: "80vh",
             overflowY: "scroll",

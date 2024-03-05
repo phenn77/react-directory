@@ -119,7 +119,7 @@ export const MediaList = (props: MediaListProps) => {
 
   return (
     <Box
-      className={"mediaList"}
+      className={`mediaList-${props.directory}`}
       sx={{
         display: "flex",
         ...(props.directory === "member" && {

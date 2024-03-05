@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { default as LoginIcon } from "@mui/icons-material/Login";
 import { AddCircle, Apps, ArrowBack, Edit, Logout } from "@mui/icons-material";
-import { Avatar, Box, ButtonGroup, IconButton, Tooltip } from "@mui/material";
+import {
+  Avatar,
+  AvatarGroup,
+  Box,
+  IconButton,
+  Tooltip,
+} from "@mui/material";
 import { blue, green, red, grey } from "@mui/material/colors";
 import { Login } from "../../form";
+import { useNavigate } from "react-router";
 
 interface ActionProps {
   position: "top" | "left" | "right" | "bottom";
 }
 
 export const ActionNavbar = (props: ActionProps) => {
+const navigate = useNavigate();
   const [token, setToken] = useState<string>("");
   const [callLogin, setCallLogin] = useState<boolean>(false);
   const [callLogout, setCallLogout] = useState<boolean>(false);
@@ -22,8 +30,6 @@ export const ActionNavbar = (props: ActionProps) => {
   useEffect(() => {
     const sessionToken = sessionStorage.getItem("token");
     setToken(sessionToken !== null ? sessionToken : "");
-
-    console.log(window.location.href);
   }, []);
 
   const logout = () => {
@@ -32,10 +38,8 @@ export const ActionNavbar = (props: ActionProps) => {
     sessionStorage.removeItem("token");
     setToken("");
 
-    currentUrl = currentUrl.replace("add", "");
-    currentUrl = currentUrl.replace("view", "");
-
-    window.location.href = currentUrl;
+    const url = window.location.href.replaceAll("/add", "");
+    window.location.href = url;
   };
 
   return (
@@ -48,6 +52,7 @@ export const ActionNavbar = (props: ActionProps) => {
         ...(props.position === "right" && {
           right: 0,
         }),
+        zIndex: 1,
       }}
     >
       {token === "" && (
@@ -93,11 +98,19 @@ export const ActionNavbar = (props: ActionProps) => {
       )}
 
       {token !== "" && openHome && (
-        <ButtonGroup
+        <AvatarGroup
           sx={{
             display: "flex",
             flexDirection: {
-              lg: "column",
+              lg: "column-reverse",
+            },
+            "& .MuiAvatar-root": {
+              mt: {
+                lg: "-8px",
+              },
+              ml: {
+                lg: "0px",
+              },
             },
           }}
         >
@@ -182,7 +195,7 @@ export const ActionNavbar = (props: ActionProps) => {
               </IconButton>
             </Avatar>
           </Tooltip>
-        </ButtonGroup>
+        </AvatarGroup>
       )}
     </Box>
   );

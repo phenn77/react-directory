@@ -65,7 +65,7 @@ export const View = () => {
   };
 
   const content = (
-    <Box display={"flex"} flexDirection={"column"}>
+    <Box className={"media"} display={"flex"} flexDirection={"column"}>
       <SocialMedia data={data.socialMedia} />
       <Rate rate={data.rating} />
 
@@ -112,7 +112,14 @@ export const View = () => {
         name={state.name}
       />
 
-      <Container>{content}</Container>
+      <Container
+        className={"artistView"}
+        sx={{
+          mb: "100px",
+        }}
+      >
+        {content}
+      </Container>
     </Box>
   );
 };
