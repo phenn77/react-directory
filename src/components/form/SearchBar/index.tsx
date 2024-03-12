@@ -14,7 +14,7 @@ interface SearchProps {
 export const SearchBar = (props: SearchProps) => {
   return (
     <Box
-      className={"searchBar"}
+      className={"search-bar"}
       sx={{
         display: "flex",
         justifyContent: "center",

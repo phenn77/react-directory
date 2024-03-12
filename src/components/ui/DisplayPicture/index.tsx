@@ -9,7 +9,7 @@ export const DisplayPicture = (props: ImageProps) => {
   return (
     <Box
       component="img"
-      className={"displayPicture"}
+      className={"display-picture"}
       sx={{
         my: "40px",
         objectFit: "cover",

@@ -8,7 +8,7 @@ export const HeaderWithText = (props: Props) => {
   return (
     <Box
       component={Typography}
-      className={"headerWithName"}
+      className={"header-with-name"}
       variant={"h2"}
       align={"center"}
       sx={{

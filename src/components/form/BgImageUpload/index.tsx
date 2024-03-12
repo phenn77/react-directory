@@ -14,7 +14,7 @@ export const BgImageUpload = (props: BgImageUploadInput) => {
 
   return (
     <Box
-      className={"bgImageUpload"}
+      className={"bg-img-upload"}
       sx={{
         display: "flex",
         flexDirection: "column",

@@ -93,7 +93,7 @@ export const Login = (req: LoginProps) => {
       onClose={() => (window.location.href = window.location.href)}
     >
       <Box
-        className={"loginModal"}
+        className={"login-modal"}
         sx={{
           position: "absolute",
           top: "50%",

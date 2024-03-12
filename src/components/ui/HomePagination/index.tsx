@@ -5,7 +5,7 @@ import { PaginationProps } from "../../../variables/interfaces";
 export const HomePagination = (props: PaginationProps) => {
   return (
     <Box
-      className={"homePagination"}
+      className={"home-pagination"}
       sx={{
         display: "flex",
         width: 1,

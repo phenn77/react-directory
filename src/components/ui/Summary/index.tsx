@@ -8,7 +8,7 @@ interface SummaryProps {
 export const Summary = (props: SummaryProps) => {
   return (
     <Box
-      className={"summaryBox"}
+      className={"summary-box"}
       component={"fieldset"}
       sx={{
         overflowY: "scroll",

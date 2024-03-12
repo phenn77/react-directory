@@ -10,7 +10,7 @@ interface SummaryProps {
 export const Summary = (props: SummaryProps) => {
   return (
     <Box
-      className={"summaryInput"}
+      className={"summary-input"}
       sx={{
         display: "flex",
         justifyContent: "center",

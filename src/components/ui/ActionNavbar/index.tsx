@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { default as LoginIcon } from "@mui/icons-material/Login";
 import { AddCircle, Apps, ArrowBack, Edit, Logout } from "@mui/icons-material";
-import {
-  Avatar,
-  AvatarGroup,
-  Box,
-  IconButton,
-  Tooltip,
-} from "@mui/material";
+import { Avatar, AvatarGroup, Box, IconButton, Tooltip } from "@mui/material";
 import { blue, green, red, grey } from "@mui/material/colors";
 import { Login } from "../../form";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 interface ActionProps {
   position: "top" | "left" | "right" | "bottom";
 }
 
 export const ActionNavbar = (props: ActionProps) => {
-const navigate = useNavigate();
+  const { state } = useLocation();
+  const navigate = useNavigate();
+
   const [token, setToken] = useState<string>("");
   const [callLogin, setCallLogin] = useState<boolean>(false);
   const [callLogout, setCallLogout] = useState<boolean>(false);
@@ -42,9 +38,13 @@ const navigate = useNavigate();
     window.location.href = url;
   };
 
+  const edit = () => {
+    navigate(`${state.directory}/edit`, { replace: true, state: state });
+  };
+
   return (
     <Box
-      className={"actionNavbar"}
+      className={"action-navbar"}
       sx={{
         bottom: 0,
         position: "fixed",
@@ -148,7 +148,8 @@ const navigate = useNavigate();
               >
                 <IconButton
                   size={"large"}
-                  onClick={() => (window.location.href = currentUrl + "/edit")}
+                  onClick={() => edit()}
+                  //   onClick={() => (window.location.href = currentUrl + "/edit")}
                 >
                   <Edit
                     sx={{

@@ -11,7 +11,7 @@ interface SocialMediaProps {
 export const SocialMedia = (props: any) => {
   return (
     <Box
-      className={"socialMedia"}
+      className={"social-media"}
       display={"flex"}
       justifyContent={"space-around"}
     >

@@ -57,7 +57,7 @@ export const ImageGallery = (data: any) => {
   return (
     <Container>
       <ImageList
-        className={"imageList"}
+        className={"image-list"}
         cols={4}
         sx={{
           gridTemplateColumns: {

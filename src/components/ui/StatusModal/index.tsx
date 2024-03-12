@@ -14,7 +14,7 @@ export const StatusModal = (props: StatusInput) => {
 
   return (
     <Modal
-      className={"statusModal"}
+      className={"status-modal"}
       open={props.open}
       // onClose={handleClose}
     >

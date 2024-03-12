@@ -78,14 +78,14 @@ export const Home = () => {
       />
 
       <Box
-        className={"homepage"}
+        className={"homepage-box"}
         sx={{
           display: "flex",
           flexDirection: "column",
         }}
       >
         <Container
-          className={"homepage"}
+          className={"homepage-container"}
           sx={{
             height: "80vh",
             overflowY: "scroll",

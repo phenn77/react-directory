@@ -7,6 +7,7 @@ interface ImageUploadInput {
   onChange: (event: any) => void;
   onClear: (event: any) => void;
   required: boolean;
+  directory: string;
 }
 
 export const ImageUpload = (props: ImageUploadInput) => {
@@ -16,7 +17,7 @@ export const ImageUpload = (props: ImageUploadInput) => {
 
   return (
     <Box
-      className={"imageUpload"}
+      className={"img-upload"}
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -30,18 +31,35 @@ export const ImageUpload = (props: ImageUploadInput) => {
           sx={{
             my: "40px",
             objectFit: "cover",
-            width: {
-              sm: "160px",
-              md: "200px",
-            },
-            height: {
-              sm: "160px",
-              md: "200px",
-            },
-            borderRadius: {
-              sm: "80px",
-              md: "160px",
-            },
+            ...(props.directory === "artist" && {
+                borderRadius: {
+                  sm: "80px",
+                  md: "160px",
+                },
+              }),
+              ...((props.directory === "album" || props.directory === "single") && {
+                borderRadius: "20px",
+              }),
+              width: {
+                sm: "160px",
+                md: "320px",
+              },
+              height: {
+                sm: "160px",
+                md: "320px",
+              },
+            // width: {
+            //   sm: "160px",
+            //   md: "200px",
+            // },
+            // height: {
+            //   sm: "160px",
+            //   md: "200px",
+            // },
+            // borderRadius: {
+            //   sm: "80px",
+            //   md: "160px",
+            // },
           }}
           src={imageUrl}
         />

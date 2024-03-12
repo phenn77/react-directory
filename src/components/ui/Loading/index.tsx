@@ -11,7 +11,7 @@ function CircularProgressWithLabel(
 ) {
   return (
     <Box
-      className={"loadingBar"}
+      className={"loading-bar"}
       sx={{
         width: 1,
         display: "flex",

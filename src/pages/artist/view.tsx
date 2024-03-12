@@ -14,24 +14,6 @@ import {
 
 export const View = () => {
   const { state } = useLocation();
-  const [data, setData] = useState<any>({
-    name: "",
-    summary: "",
-    rating: 0,
-    members: [],
-    albums: [],
-    singles: [],
-    socialMedia: [],
-    backgroundImage: [],
-    displayPicture: [],
-  });
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [windowSize, setWindowSize] = useState<number>(window.innerWidth);
-
-  const displayPicture =
-    data.displayPicture.length > 0
-      ? data.displayPicture[0].fileSrc
-      : state.imageUrl;
 
   useEffect(() => {
     document.title = state.name;
@@ -47,6 +29,26 @@ export const View = () => {
       window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
+
+  const [data, setData] = useState<any>({
+    name: "",
+    summary: "",
+    rating: 0,
+    members: [],
+    albums: [],
+    singles: [],
+    socialMedia: [],
+    backgroundImage: [],
+    displayPicture: [],
+  });
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [windowSize, setWindowSize] = useState<number>(window.innerWidth);
+
+  const displayPicture =
+    data.displayPicture.length > 0
+      ? data.displayPicture[0].fileSrc
+      : state.imageUrl;
 
   const retrieveData = () => {
     setIsLoading(true);

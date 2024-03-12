@@ -44,7 +44,7 @@ export const DotPagination = (props: PaginationProps) => {
 
   return (
     <Box
-      className={"dotPagination"}
+      className={"dot-pagination"}
       sx={{
         display: "flex",
         justifyContent: "center",
